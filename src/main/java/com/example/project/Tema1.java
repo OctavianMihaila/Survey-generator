@@ -11,17 +11,14 @@ import java.util.Arrays;
 public class Tema1 {
 
 	public static void main(final String[] args) throws IllegalArgumentException {
+
 		if(args == null)
 		{
 			System.out.print("Hello world!");
+			return;
 		}
 
-
 		String request = args[0];
-//		if(request.equals("-create-user")) {
-//			Parser.ParseCreateUser(args);
-//		}
-
 		JSONObject confirmation = null;
 
 		switch (request) {
@@ -34,43 +31,35 @@ public class Tema1 {
 				break;
 
 			case "-get-question-id-by-text":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.GetQuestionIdByText(args);
 				break;
 
 			case "-get-all-questions":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.GetAllQuestions(args);
 				break;
 
 			case "-create-quizz":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.CreateQuiz(args);
 				break;
 
 			case "-get-quizz-by-name":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.GetQuizIdByName(args);
 				break;
 
 			case "-get-all-quizzes":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.GetAllQuizes(args);
 				break;
 
 			case "-get-quizz-details-by-id":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.GetQuizDetailsByID(args);
 				break;
 
 			case "-delete-quizz":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.DeleteQuiz(args);
 				break;
 
 			case "-get-my-solutions":
-				System.out.println("TODO");
-				confirmation = null;
+				confirmation = Parser.GetMySolutions(args);
 				break;
 
 			case "-cleanup-all":
@@ -85,7 +74,5 @@ public class Tema1 {
 		if (confirmation != null) {
 			System.out.print("{" + confirmation.get("message") + "}");
 		}
-
-
 	}
 }
