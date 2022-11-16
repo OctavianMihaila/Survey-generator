@@ -29,12 +29,11 @@ public class JSONWriteRead {
             return true;
         }
 
-        JSONArray objArray = new JSONArray();
         Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
         // Writing to a json file
         try (FileWriter file = new FileWriter("src/Database/" + filename + ".json")) {
-            file.write(gson.toJson(JsonParser.parseString(objArray.toJSONString().replace("'", "\\u0027"))));
+            file.write(gson.toJson(JsonParser.parseString(obj.toJSONString())));
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();

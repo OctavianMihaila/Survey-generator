@@ -15,6 +15,7 @@ public class Tema1 {
 		if(args == null)
 		{
 			System.out.print("Hello world!");
+
 			return;
 		}
 
@@ -31,35 +32,35 @@ public class Tema1 {
 				break;
 
 			case "-get-question-id-by-text":
-				confirmation = Parser.GetQuestionIdByText(args);
+				confirmation = Parser.ParseGetQuestionIdByText(args);
 				break;
 
 			case "-get-all-questions":
-				confirmation = Parser.GetAllQuestions(args);
+				confirmation = Parser.ParseGetAllQuestions(args);
 				break;
 
 			case "-create-quizz":
-				confirmation = Parser.CreateQuiz(args);
+				confirmation = Parser.ParseCreateQuiz(args);
 				break;
 
 			case "-get-quizz-by-name":
-				confirmation = Parser.GetQuizIdByName(args);
+				confirmation = Parser.ParseGetQuizIdByName(args);
 				break;
 
 			case "-get-all-quizzes":
-				confirmation = Parser.GetAllQuizes(args);
+				confirmation = Parser.ParseGetAllQuizes(args);
 				break;
 
 			case "-get-quizz-details-by-id":
-				confirmation = Parser.GetQuizDetailsByID(args);
+				confirmation = Parser.ParseGetQuizDetailsByID(args);
 				break;
 
 			case "-delete-quizz":
-				confirmation = Parser.DeleteQuiz(args);
+				confirmation = Parser.ParseDeleteQuiz(args);
 				break;
 
 			case "-get-my-solutions":
-				confirmation = Parser.GetMySolutions(args);
+				confirmation = Parser.ParseGetMySolutions(args);
 				break;
 
 			case "-cleanup-all":
