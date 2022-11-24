@@ -72,14 +72,15 @@ public class Parser {
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
 
-        if (User.Authentication(username, password) == false) {
-            confirmation.put("message", "'status':'error','message':'Login failed'");
-            return confirmation;
-        }
-
         String text = args[3];
         String type = args[4];
+
         if (!text.contains("-text")) {
+            if (User.Authentication(username, password) == false) { // Check if credentials are valid.
+                confirmation.put("message", "'status':'error','message':'Login failed'");
+                return confirmation;
+            }
+
             confirmation.put("message", "'status':'error','message':'No question text provided'");
             return confirmation;
         }
@@ -87,9 +88,6 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'No question type provided'");
             return confirmation;
         }
-        // TO DO: Check authentification (do a method in USER class) check if username exists or if pass is wrong
-        // TO DO: Check if question already exists (do a method in question class), check by text
-        //
         Integer count = 0; // Counts how many true answer are in a single-answer question.
         Map<String, Boolean> answers = new HashMap<String, Boolean>();
         for (int i = 5; i < args.length; i += 2) {
@@ -130,7 +128,17 @@ public class Parser {
         question.put("type", type);
         question.put("Answers", answers);
 
-        JSONWriteRead.WriteWithAppend(question, "Questions");
+        if (User.Authentication(username, password) == false) { // Check if credentials are valid.
+            confirmation.put("message", "'status':'error','message':'Login failed'");
+            return confirmation;
+        }
+
+        if (Question.CheckAlreadyExists(text) == true) { // Check if question is present in Question.json.
+            confirmation.put("message", "'status':'error','message':'Question already exists'");
+            return confirmation;
+        }
+
+        JSONWriteRead.WriteWithAppend(question, "Questions", null);
 
         confirmation.put("message", "'status' : 'ok', 'message' : 'Question added successfully'");
 
@@ -145,13 +153,13 @@ public class Parser {
     public static JSONObject ParseGetQuestionIdByText(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
+
 
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
@@ -216,9 +224,30 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
+        String text = args[3];
+        if (Quiz.CheckAlreadyExists(text) == true) { // Checking if quiz already exists.
+            confirmation.put("message", "'status':'error','message':'Quizz name already exists'");
+            return confirmation;
+        }
 
-        // TO DO: Check if quiz name already exists
-        // TO DO: Check question id does not exists
+        // Getting all the questions from the database.
+        List<Question> questions = JSONWriteRead.MappingJSON("Questions");
+        Boolean found = false;
+        int id = -1;
+        for (int i = 4; i < args.length; i++) { // Checking if question id exists.
+            id = args[i].charAt(args[i].lastIndexOf("'") - 1) - 48;
+            if (questions != null && questions.get(0).CheckIdExists(questions, id)) {
+                found = true;
+            } else {
+                found = false;
+                break;
+            }
+        }
+
+        if (found == false && id != -1) {
+            confirmation.put("message", "'status':'error','message':'Question ID for question " + id + " does not exist'");
+            return confirmation;
+        }
 
         String quizName = args[3];
         ArrayList<Integer> questionsIDs = new ArrayList<>();
@@ -232,8 +261,8 @@ public class Parser {
         quiz.put("quizName", quizName);
         quiz.put("questionsIDs", questionsIDs);
 
-        JSONWriteRead.WriteWithAppend(quiz, "Quizes");
-        confirmation.put("message", "'status' : 'ok', 'message' : 'Quizz added successfully'");
+        JSONWriteRead.WriteWithAppend(quiz, "Quizes", null);
+        confirmation.put("message", "'status' : 'ok', 'message' : 'Quizz added succesfully'");
 
         return confirmation;
     }
@@ -247,8 +276,8 @@ public class Parser {
     public static JSONObject ParseGetQuizIdByName(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
@@ -259,7 +288,11 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        // TO DO: Check if quiz already exists
+        String text = args[3];
+        if (Quiz.CheckAlreadyExists(text) == true) {
+            confirmation.put("message", "'status':'error','message':'Quizz name already exists'");
+            return confirmation;
+        }
         // TO DO: Search for quiz
 
         confirmation.put("message", "'status':'ok','message': 'TO LIST QUIZ ID'");
@@ -276,8 +309,7 @@ public class Parser {
     public static JSONObject ParseGetAllQuizes(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
@@ -306,8 +338,7 @@ public class Parser {
     public static JSONObject ParseGetQuizDetailsByID(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
@@ -336,8 +367,7 @@ public class Parser {
     public static JSONObject ParseGetQuizAnswers(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
@@ -365,8 +395,7 @@ public class Parser {
     public static JSONObject ParseSubmitAnswers(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
@@ -402,24 +431,32 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
+        String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
+        String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
         if (args.length < 4) {
+            if (User.Authentication(username, password) == false) {
+                confirmation.put("message", "'status':'error','message':'Login failed'");
+                return confirmation;
+            }
             confirmation.put("message", "'status':'error','message':'No quizz identifier was provided'");
             return confirmation;
         }
-        String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
-        String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
 
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        // TO DO: Check if quiz does not exist
-        // TO DO: DELETE THE QUIZ FROM FILE AND DELETE THE OBJECT
 
-
-        confirmation.put("message", "'status':'ok','message': 'Quizz deleted successfully'");
-        return confirmation;
-
+        String text = args[3];
+        Boolean exist = Quiz.DeleteQuiz(text);
+        if (exist == true) {
+            confirmation.put("message", "'status':'ok','message':'Quizz deleted successfully'");
+            return confirmation;
+        } else {
+            confirmation.put("message", "'status':'error','message':'No quiz was found'");
+            return confirmation;
+        }
     }
 
     /**

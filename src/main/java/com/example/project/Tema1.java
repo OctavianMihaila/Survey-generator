@@ -22,6 +22,7 @@ public class Tema1 {
 		String request = args[0];
 		JSONObject confirmation = null;
 
+		// TO ADD: Singleton pattern
 		switch (request) {
 			case "-create-user":
 				confirmation = Parser.ParseCreateUser(args);
@@ -55,7 +56,11 @@ public class Tema1 {
 				confirmation = Parser.ParseGetQuizDetailsByID(args);
 				break;
 
-			case "-delete-quizz":
+			case "–submit-quizz":
+				confirmation = Parser.ParseSubmitAnswers(args);
+				break;
+
+			case "-delete-quizz-by-id":
 				confirmation = Parser.ParseDeleteQuiz(args);
 				break;
 

@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class User {
     private String username;
@@ -26,7 +28,7 @@ public class User {
         JSONParser jsonParser = new JSONParser();
         JSONObject user = null;
 
-        if (FilenameToCheck.exists()) {
+        if (Files.exists(Paths.get(filePath))) {
             try (FileReader reader = new FileReader(filePath)) {
                 Object object = jsonParser.parse(reader);
                 user = (JSONObject) object;

@@ -85,7 +85,7 @@ public class TestTema1
 
         // assertion
         assertEquals("{ 'status' : 'error', 'message' : 'Please provide username'}".replace("' ", "'").replace(" '","'"),
-                bos.toString().replace("' ", "'").replace(" '","'"));
+                bos.toString().trim().replace("' ", "'").replace(" '","'"));
 
         // undo the binding in System
         System.setOut(originalOut);
@@ -279,7 +279,7 @@ public class TestTema1
         System.setOut(new PrintStream(bos));
 
         // action
-        Tema1.main(new String[]{"-create-question", "-u 'test'", "-p 'test'", "-text 'Cerul este albastru'", "-type 'single'", "-answer-1 'Yes'", "-answer-1-is-correct 1", "-answer-2 'No'", "-answer-2-is-correct '0'"});
+        Tema1.main(new String[]{"-create-question", "-u 'test'", "-p 'test'", "-text 'Cerul este albastru'", "-type 'single'", "-answer-1 'Yes'", "-answer-1-is-correct '1'", "-answer-2 'No'", "-answer-2-is-correct '0'"});
 
         // assertion
         assertEquals("{ 'status' : 'error', 'message' : 'Question already exists'}".replace("' ", "'").replace(" '","'"),
@@ -466,7 +466,7 @@ public class TestTema1
         System.setOut(new PrintStream(bos));
 
         // action
-        Tema1.main(new String[]{"-create-question", "-u 'test'", "-p 'test'", "-text 'Cerul este albastru'", "-type 'single'", "-answer-1-is-correct 1","-answer-2 'Yes'", "-answer-2-is-correct '0'"});
+        Tema1.main(new String[]{"-create-question", "-u 'test'", "-p 'test'", "-text 'Cerul este albastru'", "-type 'single'", "-answer-1-is-correct '1'","-answer-2 'Yes'", "-answer-2-is-correct '0'"});
 
         // assertion
         assertEquals("{ 'status' : 'error', 'message' : 'Answer 1 has no answer description'}".replace("' ", "'").replace(" '","'"),
@@ -858,7 +858,7 @@ public class TestTema1
         // action
         Tema1.main(new String[]{"-get-all-questions", "-u 'test'", "-p 'test'"});
         //assertion
-        assertEquals("{ 'status' : 'ok', 'message' : '[{\"question_id\" : \"1\", \"question_name\" : \"Cerul este albastru\"}, {\"question_id\" : \"2\", \"question_name\" : \"Temperatura se poate măsura în\"}]}'".replace("' ", "'").replace(" '","'"),
+        assertEquals("{ 'status' : 'ok', 'message' : '[{\"question_id\" : \"1\", \"question_name\" : \"Cerul este albastru\"}, {\"question_id\" : \"2\", \"question_name\" : \"Temperatura se poate măsura în\"}]'}".replace("' ", "'").replace(" '","'"),
                 bos.toString().trim().replace("' ", "'").replace(" '", "'"));
 
 
@@ -1233,7 +1233,7 @@ public class TestTema1
         System.setOut(new PrintStream(bos));
 
         // action
-        Tema1.main(new String[]{"-get-quizz-by-name", "-u 'test'", "-p 'test'", "-text 'Chestionarul 1'"});
+        Tema1.main(new String[]{"-get-quizz-by-name", "-u 'test'", "-p 'test'", "-name 'Chestionarul 1'"});
 
         // assertion
         assertEquals("{ 'status' : 'error', 'message' : 'Quizz does not exist'}".replace("' ", "'").replace(" '","'"),
@@ -1280,7 +1280,7 @@ public class TestTema1
         bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
 
-        Tema1.main(new String[]{"-get-quizz-by-name", "-u 'test'", "-p 'test'", "-text 'Chestionarul 1'"});
+        Tema1.main(new String[]{"-get-quizz-by-name", "-u 'test'", "-p 'test'", "-name 'Chestionarul 1'"});
 
         // assertion
         assertEquals("{ 'status' : 'ok', 'message' : '1'}".replace("' ", "'").replace(" '","'"),
@@ -1457,7 +1457,7 @@ public class TestTema1
 
 
         // assertion
-        assertEquals("{ 'status' : 'ok', 'message' : '[{\"quizz_id\" : \"1\", \"quizz_name\" : \"Chestionarul 1\", \"is_completed\" : \"False\"}, {\"quizz_id\" : \"2\", \"quizz_name\" : \"Chestionarul 2\", \"is_completed\" : \"False\"}]'".replace("' ", "'").replace(" '","'"),
+        assertEquals("{ 'status' : 'ok', 'message' : '[{\"quizz_id\" : \"1\", \"quizz_name\" : \"Chestionarul 1\", \"is_completed\" : \"False\"}, {\"quizz_id\" : \"2\", \"quizz_name\" : \"Chestionarul 2\", \"is_completed\" : \"False\"}]'}".replace("' ", "'").replace(" '","'"),
                 bos.toString().trim().replace("' ", "'").replace(" '","'"));
 
         // undo the binding in System
@@ -2206,7 +2206,7 @@ public class TestTema1
         bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
 
-        Tema1.main(new String[]{"-delete-quizz-by-id", "-u 'test'", "-p 'test2'", "-id '2'"});
+        Tema1.main(new String[]{"-delete-quizz-by-id", "-u 'test'", "-p 'test'", "-id '2'"});
 
         // assertion
         assertEquals("{ 'status' : 'error', 'message' : 'No quiz was found'}".replace("' ", "'").replace(" '","'"),

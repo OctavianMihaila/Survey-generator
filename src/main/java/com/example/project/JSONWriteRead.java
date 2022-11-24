@@ -12,6 +12,11 @@ import java.awt.image.BufferedImageFilter;
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class JSONWriteRead {
     /**
@@ -49,7 +54,7 @@ public class JSONWriteRead {
      * @param filename
      * @return
      */
-    public static void WriteWithAppend(JSONObject obj, String filename) {
+    public static void WriteWithAppend(JSONObject obj, String filename, JSONArray ObjArr) {
         Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
         String filePath = "src/Database/" + filename + ".json";
         File FilenameToCheck = new File(filePath);
@@ -60,8 +65,14 @@ public class JSONWriteRead {
             // Appending new object to existing json file
             try (FileReader reader = new FileReader(filePath)) {
                 Object object = jsonParser.parse(reader);
-                objArray = (JSONArray) object;
-                objArray.add(obj);
+
+                if (ObjArr == null) {
+                    objArray = (JSONArray) object;
+                    objArray.add(obj);
+                } else {
+                    objArray = ObjArr;
+
+                }
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -84,5 +95,68 @@ public class JSONWriteRead {
         }
 
         return;
+    }
+
+    /**
+     * Mapping questions from JSON into Question/Quiz objects.
+     * @param filename specifies what type of objects to create.
+     * @return List of Quizes/Questions.
+     * @param <T>
+     */
+    public static <T> List<T> MappingJSON(String filename) {
+        String filePath = "src/Database/" + filename + ".json";
+        File FilenameToCheck = new File(filePath);
+        JSONParser jsonParser = new JSONParser();
+        JSONArray objArray = null;
+        int counterIDs = 1;
+        List<T> items = new ArrayList<T>();
+
+        try (FileReader reader = new FileReader(filePath)) {
+            Object object = jsonParser.parse(reader);
+            objArray = (JSONArray) object;
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (objArray == null) {
+            System.out.println("Empty file(Mapping JSON)");
+            return null;
+        }
+
+
+        if (filename.equals("Questions")) {
+            for (int i = 0; i < objArray.size(); i++) {
+                JSONObject obj = (JSONObject) objArray.get(i);
+                Question question = new Question(counterIDs, (String)obj.get("text"),
+                        (String)obj.get("type"), (Map<String, Boolean>)obj.get("Answers"));
+                items.add((T)question);
+                counterIDs++;
+            }
+
+            return items;
+
+        } else if (filename.equals("Quizes")) {
+            for (int i = 0; i < objArray.size(); i++) {
+                JSONObject obj = (JSONObject) objArray.get(i);
+                Quiz quiz = new Quiz(counterIDs, (String)obj.get("quizName"),
+                        (ArrayList<Integer>)obj.get("questionsIDs"));
+                items.add((T)quiz);
+                counterIDs++;
+            }
+
+            return items;
+
+        } else {
+            System.out.println("Invalid filename");
+            return null;
+        }
+
+
     }
 }
