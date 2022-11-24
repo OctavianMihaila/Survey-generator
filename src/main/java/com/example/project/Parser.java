@@ -53,7 +53,14 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
+        String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
+        String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
         if (args.length < 4) {
+            if (User.Authentication(username, password) == false) { // Check if credentials are valid.
+                confirmation.put("message", "'status':'error','message':'Login failed'");
+                return confirmation;
+            }
             confirmation.put("message", "'status':'error','message':'No question text provided'");
             return confirmation;
         }
@@ -69,8 +76,6 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'More than 5 answers were submitted'");
             return confirmation;
         }
-        String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
-        String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
 
         String text = args[3];
         String type = args[4];

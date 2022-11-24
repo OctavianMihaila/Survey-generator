@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.project.TestTema1" tests="74" skipped="0" failures="21" errors="0" timestamp="2022-11-24T21:36:59" hostname="kali" time="1.071">
+<testsuite name="com.example.project.TestTema1" tests="74" skipped="0" failures="19" errors="0" timestamp="2022-11-24T21:56:24" hostname="kali" time="0.605">
   <properties/>
-  <testcase name="testSubmitQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.124">
+  <testcase name="testSubmitQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.033">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -94,14 +94,14 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testDeleteQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.155"/>
-  <testcase name="testGetAllQuizezLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.013"/>
-  <testcase name="testGetQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testCreateQuizNameAlreadyExists()" classname="com.example.project.TestTema1" time="0.017"/>
-  <testcase name="testQuestionAnswerHasNoAnswerFlag()" classname="com.example.project.TestTema1" time="0.006"/>
-  <testcase name="testGetAllQuizezNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testSubmitQuizNoId()" classname="com.example.project.TestTema1" time="0.002">
+  <testcase name="testDeleteQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.081"/>
+  <testcase name="testGetAllQuizezLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testGetQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.003"/>
+  <testcase name="testCreateQuizNameAlreadyExists()" classname="com.example.project.TestTema1" time="0.022"/>
+  <testcase name="testQuestionAnswerHasNoAnswerFlag()" classname="com.example.project.TestTema1" time="0.036"/>
+  <testcase name="testGetAllQuizezNoUsername()" classname="com.example.project.TestTema1" time="0.011"/>
+  <testcase name="testCreateQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testSubmitQuizNoId()" classname="com.example.project.TestTema1" time="0.003">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'No quizz identifier was provided'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'No quizz identifier was provided'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -194,101 +194,9 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testCreateQuestionLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;{'status':'error','message':'No question text provided'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;{'status':'error','message':'No question text provided'}&gt;
-	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
-	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
-	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
-	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
-	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
-	at app//com.example.project.TestTema1.testCreateQuestionLoginCredentialsAreWrong(TestTema1.java:247)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.5/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.5/java.lang.reflect.Method.invoke(Method.java:568)
-	at app//org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:686)
-	at app//org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
-	at app//org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
-	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
-	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:205)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:201)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:137)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:71)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at java.base@17.0.5/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at java.base@17.0.5/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
-	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
-	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.5/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.5/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
-	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
-	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:133)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
-	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
-	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-</failure>
-  </testcase>
-  <testcase name="testQuestionAnswerHasNoDescription()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testGetQuestionNotFound()" classname="com.example.project.TestTema1" time="0.001">
+  <testcase name="testCreateQuestionLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testQuestionAnswerHasNoDescription()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testGetQuestionNotFound()" classname="com.example.project.TestTema1" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Question does not exist'}&gt; but was: &lt;{'status':'ok','message':'ID TO SET'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Question does not exist'}&gt; but was: &lt;{'status':'ok','message':'ID TO SET'}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -381,9 +289,9 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testDeleteQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testDummy()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testGetSolutionsNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testDeleteQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.003"/>
+  <testcase name="testDummy()" classname="com.example.project.TestTema1" time="0.0"/>
+  <testcase name="testGetSolutionsNoUsername()" classname="com.example.project.TestTema1" time="0.004"/>
   <testcase name="testSubmitQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
@@ -478,8 +386,8 @@
 </failure>
   </testcase>
   <testcase name="testCreateUserNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testSubmitQuizNoUsername()" classname="com.example.project.TestTema1" time="0.002">
+  <testcase name="testCreateQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testSubmitQuizNoUsername()" classname="com.example.project.TestTema1" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'You need to be authenticated'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'You need to be authenticated'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -572,7 +480,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSubmitQuizNotFound()" classname="com.example.project.TestTema1" time="0.005">
+  <testcase name="testSubmitQuizNotFound()" classname="com.example.project.TestTema1" time="0.013">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'No quiz was found'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'No quiz was found'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -665,9 +573,9 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetQuizDetailsNoUsername()" classname="com.example.project.TestTema1" time="0.018"/>
-  <testcase name="testCreateQuestionWithExistingName()" classname="com.example.project.TestTema1" time="0.004"/>
-  <testcase name="testGetSolutionsSuccessfully()" classname="com.example.project.TestTema1" time="0.024">
+  <testcase name="testGetQuizDetailsNoUsername()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testCreateQuestionWithExistingName()" classname="com.example.project.TestTema1" time="0.016"/>
+  <testcase name="testGetSolutionsSuccessfully()" classname="com.example.project.TestTema1" time="0.008">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;quiz-id&quot; : &quot;1&quot;, &quot;quiz-name&quot; : &quot;Chestionarul 1&quot;, &quot;score&quot; : &quot;100&quot;, &quot;index_in_list&quot; : &quot;1&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO DO: quiz-name + score + index'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;quiz-id&quot; : &quot;1&quot;, &quot;quiz-name&quot; : &quot;Chestionarul 1&quot;, &quot;score&quot; : &quot;100&quot;, &quot;index_in_list&quot; : &quot;1&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO DO: quiz-name + score + index'}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -760,23 +668,23 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSingleAnswerQuestionHasMultipleCorrectAnswers()" classname="com.example.project.TestTema1" time="0.006"/>
+  <testcase name="testSingleAnswerQuestionHasMultipleCorrectAnswers()" classname="com.example.project.TestTema1" time="0.002"/>
   <testcase name="testCreateQuizNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetAllQuestionsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testQuestionHasNoAnswers()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testGetAllQuestionsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testQuestionHasNoAnswers()" classname="com.example.project.TestTema1" time="0.001"/>
   <testcase name="testGetQuestionLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testGetAllQuestionsUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.0"/>
+  <testcase name="testGetAllQuestionsUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
   <testcase name="testGetQuizNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetAllQuizezUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.004"/>
-  <testcase name="testQuestionHasOnlyOneAnswer()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testDeleteQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.025"/>
-  <testcase name="testGetAllQuestionsNoUsername()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testDeleteQuizNoUsername()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testCreateQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testDeleteQuizNotFound()" classname="com.example.project.TestTema1" time="0.005"/>
+  <testcase name="testGetAllQuizezUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testQuestionHasOnlyOneAnswer()" classname="com.example.project.TestTema1" time="0.005"/>
+  <testcase name="testDeleteQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.02"/>
+  <testcase name="testGetAllQuestionsNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testDeleteQuizNoUsername()" classname="com.example.project.TestTema1" time="0.007"/>
+  <testcase name="testCreateQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testDeleteQuizNotFound()" classname="com.example.project.TestTema1" time="0.011"/>
   <testcase name="testGetAllQuizezNoPassword()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testDeleteQuizNoId()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testGetQuizNotFound()" classname="com.example.project.TestTema1" time="0.003">
+  <testcase name="testDeleteQuizNoId()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testGetQuizNotFound()" classname="com.example.project.TestTema1" time="0.002">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Quizz does not exist'}&gt; but was: &lt;{'status':'ok','message':'TO LIST QUIZ ID'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Quizz does not exist'}&gt; but was: &lt;{'status':'ok','message':'TO LIST QUIZ ID'}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -869,11 +777,11 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testCreateQuestionSuccessfully()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testGetQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testCreateUserUserCreatedSuccesfully()" classname="com.example.project.TestTema1" time="0.003"/>
+  <testcase name="testCreateQuestionSuccessfully()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testGetQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testCreateUserUserCreatedSuccesfully()" classname="com.example.project.TestTema1" time="0.002"/>
   <testcase name="testGetSolutionsNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuestionSuccessfully()" classname="com.example.project.TestTema1" time="0.003">
+  <testcase name="testGetQuestionSuccessfully()" classname="com.example.project.TestTema1" time="0.009">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'1'}&gt; but was: &lt;{'status':'ok','message':'ID TO SET'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'1'}&gt; but was: &lt;{'status':'ok','message':'ID TO SET'}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -966,8 +874,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testCreateUserNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.012">
+  <testcase name="testCreateUserNoPassword()" classname="com.example.project.TestTema1" time="0.003"/>
+  <testcase name="testGetQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.019">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'1'}&gt; but was: &lt;{'status':'error','message':'Quizz name already exists'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'1'}&gt; but was: &lt;{'status':'error','message':'Quizz name already exists'}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1060,8 +968,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetQuizDetailsUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testSubmitQuiz2Of3QuestionsAnswered()" classname="com.example.project.TestTema1" time="0.071">
+  <testcase name="testGetQuizDetailsUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testSubmitQuiz2Of3QuestionsAnswered()" classname="com.example.project.TestTema1" time="0.03">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'67 points'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'67 points'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1154,7 +1062,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testQuestionDuplicateAnswers()" classname="com.example.project.TestTema1" time="0.005">
+  <testcase name="testQuestionDuplicateAnswers()" classname="com.example.project.TestTema1" time="0.003">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Same answer provided more than once'}&gt; but was: &lt;{'status':'ok','message':'Question added successfully'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Same answer provided more than once'}&gt; but was: &lt;{'status':'ok','message':'Question added successfully'}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1247,8 +1155,8 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.008"/>
-  <testcase name="testSubmitQuizNoPassword()" classname="com.example.project.TestTema1" time="0.0">
+  <testcase name="testGetQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testSubmitQuizNoPassword()" classname="com.example.project.TestTema1" time="0.001">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'You need to be authenticated'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'You need to be authenticated'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1341,103 +1249,11 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetQuizDetailsNoPassword()" classname="com.example.project.TestTema1" time="0.005"/>
-  <testcase name="testCreateQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001">
-    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;{'status':'error','message':'No question text provided'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'error','message':'Login failed'}&gt; but was: &lt;{'status':'error','message':'No question text provided'}&gt;
-	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
-	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
-	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
-	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
-	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1124)
-	at app//com.example.project.TestTema1.testCreateQuestionUsernameDoesNotExists(TestTema1.java:216)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.5/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.5/java.lang.reflect.Method.invoke(Method.java:568)
-	at app//org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:686)
-	at app//org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
-	at app//org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
-	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
-	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
-	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
-	at app//org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:205)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:201)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:137)
-	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:71)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at java.base@17.0.5/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at java.base@17.0.5/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:125)
-	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:135)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:123)
-	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:122)
-	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:80)
-	at app//org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
-	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
-	at app//org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96)
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79)
-	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base@17.0.5/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base@17.0.5/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base@17.0.5/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
-	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
-	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:133)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
-	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
-	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-</failure>
-  </testcase>
-  <testcase name="testCreateQuizNoPassword()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testQuestionHasNoText()" classname="com.example.project.TestTema1" time="0.023"/>
-  <testcase name="testSubmitQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.035">
+  <testcase name="testGetQuizDetailsNoPassword()" classname="com.example.project.TestTema1" time="0.0"/>
+  <testcase name="testCreateQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testCreateQuizNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testQuestionHasNoText()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testSubmitQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.008">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'100 points'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'100 points'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1530,14 +1346,14 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetQuizNoPassword()" classname="com.example.project.TestTema1" time="0.0"/>
+  <testcase name="testGetQuizNoPassword()" classname="com.example.project.TestTema1" time="0.005"/>
   <testcase name="testGetSolutionsUserDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.009"/>
-  <testcase name="testGetAllQuestionsNoPassword()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testCreateQuizQuestionIdDoesNotExist()" classname="com.example.project.TestTema1" time="0.01"/>
+  <testcase name="testGetQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testGetAllQuestionsNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testCreateQuizQuestionIdDoesNotExist()" classname="com.example.project.TestTema1" time="0.004"/>
   <testcase name="testDeleteQuizNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testGetAllQuizezSuccessfully()" classname="com.example.project.TestTema1" time="0.056">
+  <testcase name="testCreateQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testGetAllQuizezSuccessfully()" classname="com.example.project.TestTema1" time="0.013">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;quizz_id&quot; : &quot;1&quot;, &quot;quizz_name&quot; : &quot;Chestionarul 1&quot;, &quot;is_completed&quot; : &quot;False&quot;}, {&quot;quizz_id&quot; : &quot;2&quot;, &quot;quizz_name&quot; : &quot;Chestionarul 2&quot;, &quot;is_completed&quot; : &quot;False&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO PUT QUIZEZ''}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;quizz_id&quot; : &quot;1&quot;, &quot;quizz_name&quot; : &quot;Chestionarul 1&quot;, &quot;is_completed&quot; : &quot;False&quot;}, {&quot;quizz_id&quot; : &quot;2&quot;, &quot;quizz_name&quot; : &quot;Chestionarul 2&quot;, &quot;is_completed&quot; : &quot;False&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO PUT QUIZEZ''}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1630,9 +1446,9 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetSolutionsWrongCredentials()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testGetSolutionsWrongCredentials()" classname="com.example.project.TestTema1" time="0.001"/>
   <testcase name="testCreateUserUserAlreadyExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetAllQuestionsSuccessfully()" classname="com.example.project.TestTema1" time="0.008">
+  <testcase name="testGetAllQuestionsSuccessfully()" classname="com.example.project.TestTema1" time="0.005">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;question_id&quot; : &quot;1&quot;, &quot;question_name&quot; : &quot;Cerul este albastru&quot;}, {&quot;question_id&quot; : &quot;2&quot;, &quot;question_name&quot; : &quot;Temperatura se poate măsura în&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO PUT ALL QUESTIONS'}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;question_id&quot; : &quot;1&quot;, &quot;question_name&quot; : &quot;Cerul este albastru&quot;}, {&quot;question_id&quot; : &quot;2&quot;, &quot;question_name&quot; : &quot;Temperatura se poate măsura în&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO PUT ALL QUESTIONS'}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1725,7 +1541,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSubmitQuizAnsweredWrong()" classname="com.example.project.TestTema1" time="0.047">
+  <testcase name="testSubmitQuizAnsweredWrong()" classname="com.example.project.TestTema1" time="0.012">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'0 points'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'0 points'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1818,7 +1634,7 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testSubmitQuiz1QuestionAnsweredWrong2QuestionsAnsweredCorectly()" classname="com.example.project.TestTema1" time="0.054">
+  <testcase name="testSubmitQuiz1QuestionAnsweredWrong2QuestionsAnsweredCorectly()" classname="com.example.project.TestTema1" time="0.007">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'33 points'}&gt; but was: &lt;Invalid request&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'33 points'}&gt; but was: &lt;Invalid request&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
@@ -1911,10 +1727,10 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="testGetQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.004"/>
-  <testcase name="testGetQuizDetailsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.016"/>
-  <testcase name="testCreateQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.012"/>
-  <testcase name="testGetQuizDetailsSuccessfully()" classname="com.example.project.TestTema1" time="0.01">
+  <testcase name="testGetQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testGetQuizDetailsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testCreateQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.006"/>
+  <testcase name="testGetQuizDetailsSuccessfully()" classname="com.example.project.TestTema1" time="0.005">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;question-name&quot;:&quot;Cerul este albastru&quot;, &quot;question_index&quot;:&quot;1&quot;, &quot;question_type&quot;:&quot;single&quot;, &quot;answers&quot;:&quot;[{&quot;answer_name&quot;:&quot;Yes&quot;, &quot;answer_id&quot;:&quot;1&quot;}, {&quot;answer_name&quot;:&quot;No&quot;, &quot;answer_id&quot;:&quot;2&quot;}]&quot;}, {&quot;question-name&quot;:&quot;Temperatura se poate măsura în&quot;, &quot;question_index&quot;:&quot;2&quot;, &quot;question_type&quot;:&quot;single&quot;, &quot;answers&quot;:&quot;[{&quot;answer_name&quot;:&quot;C&quot;, &quot;answer_id&quot;:&quot;3&quot;}, {&quot;answer_name&quot;:&quot;L&quot;, &quot;answer_id&quot;:&quot;4&quot;}]&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO PUT QUIZEZ''}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{'status':'ok','message':'[{&quot;question-name&quot;:&quot;Cerul este albastru&quot;, &quot;question_index&quot;:&quot;1&quot;, &quot;question_type&quot;:&quot;single&quot;, &quot;answers&quot;:&quot;[{&quot;answer_name&quot;:&quot;Yes&quot;, &quot;answer_id&quot;:&quot;1&quot;}, {&quot;answer_name&quot;:&quot;No&quot;, &quot;answer_id&quot;:&quot;2&quot;}]&quot;}, {&quot;question-name&quot;:&quot;Temperatura se poate măsura în&quot;, &quot;question_index&quot;:&quot;2&quot;, &quot;question_type&quot;:&quot;single&quot;, &quot;answers&quot;:&quot;[{&quot;answer_name&quot;:&quot;C&quot;, &quot;answer_id&quot;:&quot;3&quot;}, {&quot;answer_name&quot;:&quot;L&quot;, &quot;answer_id&quot;:&quot;4&quot;}]&quot;}]'}&gt; but was: &lt;{'status':'ok','message':'TO PUT QUIZEZ''}&gt;
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:55)
 	at app//org.junit.jupiter.api.AssertionUtils.failNotEqual(AssertionUtils.java:62)
