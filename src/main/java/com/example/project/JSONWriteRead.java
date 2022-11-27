@@ -111,24 +111,27 @@ public class JSONWriteRead {
         int counterIDs = 1;
         List<T> items = new ArrayList<T>();
 
-        try (FileReader reader = new FileReader(filePath)) {
-            Object object = jsonParser.parse(reader);
-            objArray = (JSONArray) object;
+        if (FilenameToCheck.exists()) {
+            try (FileReader reader = new FileReader(filePath)) {
+                Object object = jsonParser.parse(reader);
+                objArray = (JSONArray) object;
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File does not exist");
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            } catch (FileNotFoundException e) {
+                System.out.println("File does not exist");
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-        if (objArray == null) {
-            System.out.println("Empty file(Mapping JSON)");
+            if (objArray == null) {
+                System.out.println("Empty file(Mapping JSON)");
+                return null;
+            }
+        } else {
             return null;
         }
-
 
         if (filename.equals("Questions")) {
             for (int i = 0; i < objArray.size(); i++) {
@@ -145,7 +148,8 @@ public class JSONWriteRead {
             for (int i = 0; i < objArray.size(); i++) {
                 JSONObject obj = (JSONObject) objArray.get(i);
                 Quiz quiz = new Quiz(counterIDs, (String)obj.get("quizName"),
-                        (ArrayList<Integer>)obj.get("questionsIDs"));
+                        (ArrayList<Integer>)obj.get("questionsIDs"),
+                        Boolean.parseBoolean((String)obj.get("is_completed")));
                 items.add((T)quiz);
                 counterIDs++;
             }

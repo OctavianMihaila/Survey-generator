@@ -11,14 +11,33 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class User {
     private String username;
     private String password;
 
+    private ArrayList<String> completedQuizes;
+
+    private Float grade;
+
+    // Stores the number of answered questions for the current quiz.
+    private Integer nrQuestionsAnswered;
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Float getGrade() {
+        return grade;
+    }
+    public Integer getNrQuestionsAnswered() {
+        return nrQuestionsAnswered;
+    }
+
+    public void IncNrQuestionsAnswered() {
+        this.nrQuestionsAnswered++;
     }
 
     public static Boolean Authentication(String username, String password) {
@@ -49,6 +68,27 @@ public class User {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Add a quiz name to the completed quizes arraylist.
+     * @param quizName
+     */
+    public void AddNewCompletedQuiz(String quizName) {
+        this.completedQuizes.add(quizName);
+    }
+
+    /**
+     * Check if a quiz has already been completed by a user
+     * @param quizName
+     * @return
+     */
+    public Boolean CheckAlreadyCompleted(String quizName) {
+        if (this.completedQuizes.contains(quizName)) {
+            return true;
+        }
+
+        return false;
     }
 
 }

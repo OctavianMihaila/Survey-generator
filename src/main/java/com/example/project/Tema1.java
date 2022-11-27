@@ -56,7 +56,7 @@ public class Tema1 {
 				confirmation = Parser.ParseGetQuizDetailsByID(args);
 				break;
 
-			case "–submit-quizz":
+			case "-submit-quizz":
 				confirmation = Parser.ParseSubmitAnswers(args);
 				break;
 

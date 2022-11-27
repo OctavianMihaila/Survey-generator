@@ -18,12 +18,15 @@ public class Quiz {
     private String name;
     private ArrayList<Integer> questionsIDs;
 
+    private Boolean is_completed;
+
     public static int countIDs = 1; // Used to find the quiz that has to be deleted
 
-    public Quiz(int id, String name, ArrayList<Integer> questionsIDs) {
+    public Quiz(int id, String name, ArrayList<Integer> questionsIDs, Boolean is_completed) {
         this.id = id;
         this.name = name;
         this.questionsIDs = questionsIDs;
+        this.is_completed = is_completed;
     }
 
     public int getId() {
@@ -32,6 +35,14 @@ public class Quiz {
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Integer> getQuestionsIDs() {
+        return questionsIDs;
+    }
+
+    public Boolean getIs_completed() {
+        return is_completed;
     }
 
     public static Boolean CheckAlreadyExists(String text) {
@@ -92,7 +103,9 @@ public class Quiz {
         // Mapping from JSON to Quiz objects and deleting a quiz with a specific ID.
         for (int i = 0; i < objArray.size(); i++) {
             JSONObject obj = (JSONObject)objArray.get(i);
-            Quiz quiz = new Quiz(countIDs, (String)obj.get("quizName"), (ArrayList<Integer>)obj.get("questionsIDs"));
+            Quiz quiz = new Quiz(countIDs, (String)obj.get("quizName"),
+                    (ArrayList<Integer>)obj.get("questionsIDs"),
+                    Boolean.parseBoolean((String)obj.get("is_completed")));
             countIDs++;
 
             if (quiz.getId() == (ID.charAt(ID.lastIndexOf("'") - 1) - 48)) {

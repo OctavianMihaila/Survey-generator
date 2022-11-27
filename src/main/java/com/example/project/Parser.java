@@ -1,5 +1,7 @@
 package com.example.project;
 
+import java.awt.desktop.QuitEvent;
+import java.lang.reflect.Array;
 import java.util.*;
 import org.json.simple.JSONObject;
 public class Parser {
@@ -97,8 +99,7 @@ public class Parser {
         Map<String, Boolean> answers = new HashMap<String, Boolean>();
         for (int i = 5; i < args.length; i += 2) {
             // TO DO: Method to check if a answer text is present multiple times. Iterate and check map.
-            if (answers.containsKey(args[i])) { // Checking if same answer is provided multiple times.
-
+            if (Question.CheckAnswerExists(answers, args[i])) { // Checking if same answer is provided multiple times.
                 confirmation.put("message", "'status':'error','message':" +
                         "'Same answer provided more than once'");
                 return confirmation;
@@ -172,8 +173,16 @@ public class Parser {
         }
         // TO DO: Check if question exists. (text) -> not found
         // TO DO: Return id and put in confirmation
-
-        confirmation.put("message", "'status' : 'ok', 'message' : 'ID TO SET'");
+        List<Question> questions = JSONWriteRead.MappingJSON("Questions");
+        if (questions != null) {
+            for (Question q: questions) {
+                if (q.getText().equals(args[3])) {
+                    confirmation.put("message", "'status' : 'ok', 'message' : '" + q.getId() + "'");
+                    return confirmation;
+                }
+            }
+        }
+        confirmation.put("message", "'status' : 'error', 'message' : 'Question does not exist'");
         return confirmation;
     }
 
@@ -198,9 +207,16 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        // TO DO: Return all the questions and put in confirmation
+        // Getting all the questions from the database.
+        List<Question> questions = JSONWriteRead.MappingJSON("Questions");
+        ArrayList<String> questionStrings = new ArrayList<>();
+        for (Question q: questions) { // formatting to the required template.
+            questionStrings.add("{" + "\"question_id\" : \"" +
+                    q.getId() + "\", " + "\"question_name\" : " + "\"" +
+                    q.getText().substring(7, q.getText().length() - 1) + "\"" + "}");
+        }
 
-        confirmation.put("message", "'status' : 'ok', 'message' : 'TO PUT ALL QUESTIONS'");
+        confirmation.put("message", "'status' : 'ok', 'message' : '" + questionStrings + "'");
         return confirmation;
     }
 
@@ -258,13 +274,16 @@ public class Parser {
         ArrayList<Integer> questionsIDs = new ArrayList<>();
         for (int i = 4; i < args.length; i++) {
             int indexValue = args[i].lastIndexOf("'");
-            Integer val = args[i].charAt(indexValue - 1) - 48;
+            Integer val = Integer.parseInt(String.valueOf(args[i].charAt(indexValue - 1)));
             questionsIDs.add(val);
         }
 
         JSONObject quiz = new JSONObject();
-        quiz.put("quizName", quizName);
         quiz.put("questionsIDs", questionsIDs);
+        quiz.put("is_completed", "False");
+        quiz.put("quizName", quizName);
+
+
 
         JSONWriteRead.WriteWithAppend(quiz, "Quizes", null);
         confirmation.put("message", "'status' : 'ok', 'message' : 'Quizz added succesfully'");
@@ -293,14 +312,23 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        String text = args[3];
-        if (Quiz.CheckAlreadyExists(text) == true) {
-            confirmation.put("message", "'status':'error','message':'Quizz name already exists'");
+
+        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+        if (quizes == null) {
+            confirmation.put("message", "'status':'error','message': 'Quizz does not exist'");
             return confirmation;
         }
-        // TO DO: Search for quiz
 
-        confirmation.put("message", "'status':'ok','message': 'TO LIST QUIZ ID'");
+        String text = args[3];
+        // Searching for quiz with the specific name;
+        for (Quiz q: quizes) {
+            if (q.getName().equals(text)) {
+                confirmation.put("message", "'status':'ok','message': '" + q.getId() + "'");
+                return confirmation;
+            }
+        }
+
+        confirmation.put("message", "'status':'error','message': 'Quizz does not exist'");
         return confirmation;
 
     }
@@ -327,16 +355,26 @@ public class Parser {
         }
 
         // TO DO: Check if quiz does not exist (FOR BONUS, also do that for questions)
-        // TO DO: Return all quizes
 
-        confirmation.put("message", "'status':'ok','message': 'TO PUT QUIZEZ''");
+        // Getting all the quizes from the database.
+        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+        ArrayList<String> quizStrings = new ArrayList<>();
+        for (Quiz q: quizes) { // formatting to the required template.
+            quizStrings.add("{" + "\"quizz_id\" : \"" +
+                    q.getId() + "\", " + "\"quizz_name\" : " + "\"" +
+                    q.getName().substring(7, q.getName().length() - 1) + "\", " + "\"is_completed\" : " + "\""
+                    + q.getIs_completed().toString().substring(0, 1).toUpperCase() +
+                    q.getIs_completed().toString().substring(1) + "\"" + "}");
+        }
+
+        confirmation.put("message", "'status' : 'ok', 'message' : '" + quizStrings + "'");
         return confirmation;
 
     }
 
     /**
      * Doing the checks to see if the input is valid.
-     * In case of a valid input, returns the quiz detaild for the quiz with the specificed id.
+     * In case of a valid input, returns the quiz detaild for the quiz with the specified id.
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
@@ -354,9 +392,58 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
+        Integer id =  args[3].charAt(args[3].lastIndexOf("'") - 1) - 48;
+        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+        for (Quiz q: quizes) {
+            if (q.getId() == id) {
+                // look for the questions contained in the quiz (by Question ID).
+                List<Question> questions = JSONWriteRead.MappingJSON("Questions");
+                if (questions == null) {
+                    System.out.println("there are no questions");
+                    return null;
+                }
 
-        // TO DO: Check if quiz does not exist
-        // TO DO: Return the quiz details (without the value of truth for the questions).
+                ArrayList<String> questionStrings = new ArrayList<>();
+                Integer idCount = 1; // Generate ids for answers;
+                List<Integer> questionIDs = (List<Integer>) q.getQuestionsIDs();
+                for (int i = 0; i < questionIDs.size(); i++) { // Generate the required template.
+                    Number idToCheck = questionIDs.get(i);
+                    Question question = questions.get(0).FindQuestionById(questions, idToCheck);
+
+                    // Building the answers string for every question, according to the required template.
+                    Map<String, Boolean> answers = question.getAnswers();
+                    ArrayList<String> sortedAnswers = new ArrayList<>();
+                    Iterator<Map.Entry<String, Boolean>> iterator = answers.entrySet().iterator();
+
+                    while (iterator.hasNext()) { // Convert Map keys to arraylist.
+                        Map.Entry<String, Boolean> entry = iterator.next();
+                        sortedAnswers.add(entry.getKey());
+                    }
+                    Collections.reverse(sortedAnswers);
+
+                    ArrayList<String> answersString = new ArrayList<>();
+
+                    for (String answer: sortedAnswers) {
+                        answersString.add("{\"answer_name\":\"" +
+                                answer.substring(answer.lastIndexOf(" ") + 2,
+                                        answer.lastIndexOf("'")) + "\", " +
+                                "\"answer_id\":\"" + idCount + "\"}");
+                        idCount++;
+                    }
+
+                    questionStrings.add("{\"question-name\":" + question.getText().substring(6).
+                            replace("'", "\"") + ", \"question_index\":\""
+                            + question.getId() + "\", \"question_type\":" +
+                            question.getType().substring(6).replace("'", "\"")
+                            + ", \"answers\":\"" + answersString +  "\"}");
+                }
+
+                confirmation.put("message", "'status':'ok','message':'" + questionStrings + "'");
+                return confirmation;
+
+
+            }
+        }
 
         confirmation.put("message", "'status':'ok','message': 'TO PUT QUIZEZ''");
         return confirmation;
@@ -406,19 +493,65 @@ public class Parser {
         }
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
+        if (args.length < 4) {
+            confirmation.put("message", "'status':'error','message':'No quizz identifier was provided'");
+            return confirmation;
+        }
 
-        // TO DO: Check if quiz does not exist
-        // TO DO: Raspunsul pentru intrebarea I nu are identifcator de raspuns al intrebarii asociate....
-        // TO DO: Case in which user has allready completed the quiz
-        // TO DO: Case in which user is the creator of the quiz.
-        // TO DO: Calculat points and PRINT
+        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+        if (quizes == null) {
+            confirmation.put("message", "'status':'error','message':'No quiz was found'");
+            return confirmation;
+        }
+        Integer quizToCompleteId = Integer.parseInt(String.valueOf(args[3].
+                charAt(args[3].lastIndexOf(" ") + 2)));
+        for (Quiz q: quizes) { // Looking for the quiz that has to be completed.
+            if (q.getId() == quizToCompleteId) {
+                Float grade = 0.f; // Stores the final result.
 
-        confirmation.put("message", "'status':'ok','message': 'PRINT THE RESULT(points)'");
+                // Store all the answer ids in a list.
+                ArrayList<Integer> answerIdList = new ArrayList<>();
+                for (int i = 4; i < args.length; i++) {
+                    answerIdList.add(Integer.parseInt(String.
+                            valueOf(args[i].charAt(args[i].lastIndexOf(" ") + 2))));
+                }
+
+                List<Question> questions = JSONWriteRead.MappingJSON("Questions");
+                for (Question question: questions) { // Calculate score for every question.
+                    Float answerResult = 0.f;
+                    try {
+                        answerResult = question.AnswerTheQuestion(answerIdList);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    /* subtracts the number of answers the question had from
+                    the rest of answerIds (offset). This is done because every
+                    question has its own answers list, with incremented identifiers,
+                    but from input a single incremental identifier list is received. */
+                    if (answerIdList.size() > 0) {
+                        Utils.UpdateOffset(answerIdList, question.getAnswers().size());
+                    }
+
+                    grade += answerResult;
+                }
+
+                grade /=  q.getQuestionsIDs().size();
+                if (grade < 0) { // Can't have a negative score for a quiz.
+                    grade = 0.f;
+                }
+
+                confirmation.put("message", "'status':'ok','message':'" + Math.round(grade) + " points'");
+                return confirmation;
+            }
+        }
+
+
+        confirmation.put("message", "'status':'error','message':'No quiz was found'");
         return confirmation;
     }
 
