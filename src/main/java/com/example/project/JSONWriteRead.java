@@ -149,7 +149,8 @@ public class JSONWriteRead {
                 JSONObject obj = (JSONObject) objArray.get(i);
                 Quiz quiz = new Quiz(counterIDs, (String)obj.get("quizName"),
                         (ArrayList<Integer>)obj.get("questionsIDs"),
-                        Boolean.parseBoolean((String)obj.get("is_completed")));
+                        Boolean.parseBoolean((String)obj.get("is_completed")),
+                        (String)obj.get("quizCreator"));
                 items.add((T)quiz);
                 counterIDs++;
             }
@@ -160,7 +161,41 @@ public class JSONWriteRead {
             System.out.println("Invalid filename");
             return null;
         }
+    }
 
+    /**
+     * Mapping a json file that represents a user into a User object.
+     * @param filename
+     * @return
+     */
+    public static User ReadUser(String filename) {
+        String filePath = "src/Database/" + filename + ".json";
+        File FilenameToCheck = new File(filePath);
+        JSONParser jsonParser = new JSONParser();
+        JSONObject obj = null;
+
+        if (FilenameToCheck.exists()) {
+            try (FileReader reader = new FileReader(filePath)) {
+                Object object = jsonParser.parse(reader);
+                obj = (JSONObject) object;
+
+            } catch (FileNotFoundException e) {
+                System.out.println("File does not exist");
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (obj == null) {
+            System.out.println("User does not exist");
+            return null;
+        }
+
+        return new User((String)obj.get("User"), (String)obj.get("Password"),
+                (Map<String, WrapperQuizResult>)obj.get("CompletedQuizes"));
 
     }
 }

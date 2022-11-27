@@ -1,6 +1,7 @@
 package com.example.project;
 
 import java.awt.desktop.QuitEvent;
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.*;
 import org.json.simple.JSONObject;
@@ -32,6 +33,7 @@ public class Parser {
         JSONObject user = new JSONObject();
         user.put("User", username);
         user.put("Password", password);
+        user.put("CompletedQuizes", new HashMap<String, WrapperQuizResult>());
 
         if (JSONWriteRead.WriteJSON(user, username) == true) {
             confirmation.put("message", "'status' : 'error', 'message' : 'User already exists'");
@@ -282,6 +284,7 @@ public class Parser {
         quiz.put("questionsIDs", questionsIDs);
         quiz.put("is_completed", "False");
         quiz.put("quizName", quizName);
+        quiz.put("quizCreator", username);
 
 
 
@@ -511,6 +514,20 @@ public class Parser {
                 charAt(args[3].lastIndexOf(" ") + 2)));
         for (Quiz q: quizes) { // Looking for the quiz that has to be completed.
             if (q.getId() == quizToCompleteId) {
+                /* First check if the user is the one that created the quiz.
+                Users can't complete their own quizes. */
+                if (q.getQuizCreator().equals(username)) {
+                    confirmation.put("message", "'status':'error','message':'You cannot answer your own quizz'");
+                    return confirmation;
+                }
+
+                // Check if the user already completed this quiz.
+                User user = JSONWriteRead.ReadUser(username);
+                if (user.CheckAlreadyCompleted(q.getName())) {
+                    confirmation.put("message", "'status':'error','message':'You already submitted this quizz'");
+                    return confirmation;
+                }
+
                 Float grade = 0.f; // Stores the final result.
 
                 // Store all the answer ids in a list.
@@ -544,6 +561,21 @@ public class Parser {
                 if (grade < 0) { // Can't have a negative score for a quiz.
                     grade = 0.f;
                 }
+
+                if (answerIdList.size() != 0) { // Checking if all the answers are found and processed.
+                    confirmation.put("message", "'status':'ok','message':'Answer ID for answer i does not exist'");
+                    return confirmation;
+                }
+
+                // Add quiz to the user's completedQuizes map.
+                user.AddNewCompletedQuiz(q.getName(), new WrapperQuizResult(q.getId(),
+                        Math.round(grade), user.getCompletedQuizesLength() + 1));
+
+                // Update the user json file.
+                File oldUser = new File("src/Database/" + username + ".json");
+                oldUser.delete(); // Deleting the old user JSON.
+                JSONObject obj = user.ConvertUserToJSONObject();
+                JSONWriteRead.WriteJSON(obj, username);
 
                 confirmation.put("message", "'status':'ok','message':'" + Math.round(grade) + " points'");
                 return confirmation;

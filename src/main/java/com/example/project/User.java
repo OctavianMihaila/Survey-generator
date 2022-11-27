@@ -12,25 +12,40 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class User {
     private String username;
     private String password;
 
-    private ArrayList<String> completedQuizes;
+    private Map<String, WrapperQuizResult> completedQuizes;
 
     private Float grade;
 
     // Stores the number of answered questions for the current quiz.
     private Integer nrQuestionsAnswered;
 
-    public User(String username, String password) {
+    public User(String username, String password, Map<String, WrapperQuizResult> completedQuizes) {
         this.username = username;
         this.password = password;
+        this.completedQuizes = completedQuizes;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public Float getGrade() {
         return grade;
+    }
+
+    public Map<String, WrapperQuizResult> getCompletedQuizes() {
+        return completedQuizes;
+    }
+
+    public Integer getCompletedQuizesLength() {
+        return this.completedQuizes.size();
     }
     public Integer getNrQuestionsAnswered() {
         return nrQuestionsAnswered;
@@ -74,8 +89,8 @@ public class User {
      * Add a quiz name to the completed quizes arraylist.
      * @param quizName
      */
-    public void AddNewCompletedQuiz(String quizName) {
-        this.completedQuizes.add(quizName);
+    public void AddNewCompletedQuiz(String quizName, WrapperQuizResult quizResult) {
+        this.completedQuizes.put(quizName, quizResult);
     }
 
     /**
@@ -84,11 +99,24 @@ public class User {
      * @return
      */
     public Boolean CheckAlreadyCompleted(String quizName) {
-        if (this.completedQuizes.contains(quizName)) {
+        if (this.completedQuizes.containsKey(quizName)) {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Converting a user to a JSONObject.
+     * @return
+     */
+    public JSONObject ConvertUserToJSONObject() {
+        JSONObject obj = new JSONObject();
+        obj.put("User", this.username);
+        obj.put("Password", this.password);
+        obj.put("completedQuizes", this.completedQuizes);
+
+        return obj;
     }
 
 }
