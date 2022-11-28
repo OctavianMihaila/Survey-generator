@@ -70,7 +70,10 @@ public class Tema1 {
 
 			case "-cleanup-all":
 				Arrays.stream(new File("src/Database/").listFiles()).forEach(File::delete);
-				confirmation = null;
+				if (confirmation == null) {
+					confirmation = new JSONObject();
+				}
+				confirmation.put("message", "'status':'error','message': 'Cleanup finished successfully'");
 				break;
 
 			default:
