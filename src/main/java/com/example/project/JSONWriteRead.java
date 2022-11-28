@@ -12,10 +12,7 @@ import java.awt.image.BufferedImageFilter;
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class JSONWriteRead {
@@ -193,9 +190,31 @@ public class JSONWriteRead {
             System.out.println("User does not exist");
             return null;
         }
+        Map<String, WrapperQuizResult> completedQuizes = new HashMap<>();
+        JSONArray results = (JSONArray)obj.get("WrapperQuizResult");
+        if (results != null) {
+            for (int i = 0; i < results.size(); i++) {
+                JSONObject o = ((JSONObject)results.get(i));
+                WrapperQuizResult quizResult = new WrapperQuizResult((Number)o.get("QuizId"),
+                        (Number)o.get("Score"), (Number)o.get("IndexInList"));
+                completedQuizes.put((String)o.get("QuizName"), quizResult);
+            }
+        }
+//        JSONArray arrayresults = completedQuizes.get("WrapperQuizResult");
+//
 
-        return new User((String)obj.get("User"), (String)obj.get("Password"),
-                (Map<String, WrapperQuizResult>)obj.get("CompletedQuizes"));
+//        Iterator<Map.Entry<String, WrapperQuizResult>> iterator =
+//                completedQuizes.entrySet().iterator();
+
+//        while (iterator.hasNext()) {
+//            Map.Entry<String, WrapperQuizResult> entry = iterator.next();
+//            WrapperQuizResult wrapper = entry.getValue()
+//            System.out.println(res.get("Score"));
+//        }
+
+        // TO DO: PRINT MAP TO TEST.
+
+        return new User((String)obj.get("User"), (String)obj.get("Password"), completedQuizes);
 
     }
 }

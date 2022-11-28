@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -114,7 +115,22 @@ public class User {
         JSONObject obj = new JSONObject();
         obj.put("User", this.username);
         obj.put("Password", this.password);
-        obj.put("completedQuizes", this.completedQuizes);
+
+        Iterator<Map.Entry<String, WrapperQuizResult>> iterator =
+                this.completedQuizes.entrySet().iterator();
+
+        JSONArray results = new JSONArray();
+        while (iterator.hasNext()) {
+            Map.Entry<String, WrapperQuizResult> entry = iterator.next();
+            JSONObject quizResult = new JSONObject();
+            quizResult.put("QuizId", entry.getValue().getQuizId());
+            quizResult.put("Score", entry.getValue().getScore());
+            quizResult.put("IndexInList", entry.getValue().getIndexInList());
+            quizResult.put("QuizName", entry.getKey());
+            results.add(quizResult);
+        }
+
+        obj.put("WrapperQuizResult", results);
 
         return obj;
     }

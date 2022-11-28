@@ -582,7 +582,6 @@ public class Parser {
             }
         }
 
-
         confirmation.put("message", "'status':'error','message':'No quiz was found'");
         return confirmation;
     }
@@ -650,10 +649,22 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        // TO DO: Return quiz-name + score + index in list. (Search in user's submits or smth)
+        User user = JSONWriteRead.ReadUser(username);
+        Map<String, WrapperQuizResult> completedQuizes = user.getCompletedQuizes();
+        ArrayList<String> resultStrings = new ArrayList<>();
 
+        Iterator<Map.Entry<String, WrapperQuizResult>> iterator =
+                completedQuizes.entrySet().iterator();
 
-        confirmation.put("message", "'status':'ok','message': 'TO DO: quiz-name + score + index'");
+        while (iterator.hasNext()) {
+            Map.Entry<String, WrapperQuizResult> entry = iterator.next();
+            resultStrings.add("{\"quiz-id\" : \"" + entry.getValue().getQuizId() +
+                    "\", \"quiz-name\" : \"" + entry.getKey().substring(7, entry.getKey().length() - 1) +
+                    "\", \"score\" : \"" + entry.getValue().getScore() +
+                    "\", \"index_in_list\" : \"" + entry.getValue().getIndexInList() + "\"}");
+        }
+
+        confirmation.put("message", "'status':'ok','message': '" + resultStrings + "'");
         return confirmation;
     }
 }

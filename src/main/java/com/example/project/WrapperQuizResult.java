@@ -1,25 +1,25 @@
 package com.example.project;
 
 public class WrapperQuizResult {
-    private Integer quizId;
-    private Integer score;
-    private Integer indexInList;
+    private Number quizId;
+    private Number score;
+    private Number indexInList;
 
-    public WrapperQuizResult(Integer quizId, Integer score, Integer indexInList) {
+    public WrapperQuizResult(Number quizId, Number score, Number indexInList) {
         this.quizId = quizId;
         this.score = score;
         this.indexInList = indexInList;
     }
 
-    public Integer getQuizId() {
+    public Number getQuizId() {
         return quizId;
     }
 
-    public Integer getScore() {
+    public Number getScore() {
         return score;
     }
 
-    public Integer getIndexInList() {
+    public Number getIndexInList() {
         return indexInList;
     }
 }
