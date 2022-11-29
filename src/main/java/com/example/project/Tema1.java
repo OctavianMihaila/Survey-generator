@@ -41,7 +41,7 @@ public class Tema1 {
 				break;
 
 			case "-get-all-quizzes":
-				confirmation = Parser.ParseGetAllQuizes(args);
+				confirmation = Parser.ParseGetAllQuizzes(args);
 				break;
 
 			case "-get-quizz-details-by-id":

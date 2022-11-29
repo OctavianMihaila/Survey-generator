@@ -59,7 +59,7 @@ public class Quiz {
      * @return
      */
     public static Boolean CheckAlreadyExists(String text) {
-        String filePath = "src/Database/Quizes.json";
+        String filePath = "src/Database/Quizzes.json";
         JSONParser jsonParser = new JSONParser();
         JSONArray objArray = null;
         File FilenameToCheck = new File(filePath);
@@ -92,12 +92,12 @@ public class Quiz {
     }
 
     /**
-     * Deletes a quiz from Quizes.json
+     * Deletes a quiz from Quizzes.json
      * @param ID
      * @return
      */
     public static Boolean DeleteQuiz(String ID) {
-        String filePath = "src/Database/Quizes.json";
+        String filePath = "src/Database/Quizzes.json";
         JSONParser jsonParser = new JSONParser();
         JSONArray objArray = null;
         File FilenameToCheck = new File(filePath);
@@ -131,7 +131,7 @@ public class Quiz {
 
             if (quiz.getId() == (ID.charAt(ID.lastIndexOf("'") - 1) - 48)) {
                 objArray.remove(obj);
-                JSONWriteRead.WriteWithAppend(null, "Quizes", objArray);
+                JSONWriteRead.WriteWithAppend(null, "Quizzes", objArray);
                 return true;
             }
         }

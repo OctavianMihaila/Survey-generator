@@ -18,25 +18,25 @@ public class User {
     private String username;
     private String password;
 
-    private Map<String, WrapperQuizResult> completedQuizes;
+    private Map<String, WrapperQuizResult> completedQuizzes;
 
     private Float grade;
 
     // Stores the number of answered questions for the current quiz.
     private Integer nrQuestionsAnswered;
 
-    public User(String username, String password, Map<String, WrapperQuizResult> completedQuizes) {
+    public User(String username, String password, Map<String, WrapperQuizResult> completedQuizzes) {
         this.username = username;
         this.password = password;
-        this.completedQuizes = completedQuizes;
+        this.completedQuizzes = completedQuizzes;
     }
 
-    public Map<String, WrapperQuizResult> getCompletedQuizes() {
-        return completedQuizes;
+    public Map<String, WrapperQuizResult> getCompletedQuizzes() {
+        return completedQuizzes;
     }
 
-    public Integer getCompletedQuizesLength() {
-        return this.completedQuizes.size();
+    public Integer getCompletedQuizzesLength() {
+        return this.completedQuizzes.size();
     }
 
     public static Boolean Authentication(String username, String password) {
@@ -70,11 +70,11 @@ public class User {
     }
 
     /**
-     * Add a quiz name to the completed quizes arraylist.
+     * Add a quiz name to the completed quizzes arraylist.
      * @param quizName
      */
     public void AddNewCompletedQuiz(String quizName, WrapperQuizResult quizResult) {
-        this.completedQuizes.put(quizName, quizResult);
+        this.completedQuizzes.put(quizName, quizResult);
     }
 
     /**
@@ -83,7 +83,7 @@ public class User {
      * @return
      */
     public Boolean CheckAlreadyCompleted(String quizName) {
-        if (this.completedQuizes.containsKey(quizName)) {
+        if (this.completedQuizzes.containsKey(quizName)) {
             return true;
         }
 
@@ -100,7 +100,7 @@ public class User {
         obj.put("Password", this.password);
 
         Iterator<Map.Entry<String, WrapperQuizResult>> iterator =
-                this.completedQuizes.entrySet().iterator();
+                this.completedQuizzes.entrySet().iterator();
 
         JSONArray results = new JSONArray();
         while (iterator.hasNext()) {

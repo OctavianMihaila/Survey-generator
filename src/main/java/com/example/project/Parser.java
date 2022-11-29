@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.*;
 import org.json.simple.JSONObject;
 public class Parser {
+
+    static final int NUMBER_OFFSET = 48;
+
     /**
      * Doing the checks to see if the input is valid.
      * In case of a valid input creates a json file that contains user's details.
@@ -31,7 +34,7 @@ public class Parser {
         JSONObject user = new JSONObject();
         user.put("User", username);
         user.put("Password", password);
-        user.put("CompletedQuizes", new HashMap<String, WrapperQuizResult>());
+        user.put("CompletedQuizzes", new HashMap<String, WrapperQuizResult>());
 
         if (JSONWriteRead.WriteJSON(user, username) == true) {
             confirmation.put("message", "'status' : 'error', 'message' : 'User already exists'");
@@ -73,7 +76,7 @@ public class Parser {
             }
 
             int indexValue = args[i + 1].lastIndexOf("'");
-            int val = args[i + 1].charAt(indexValue - 1) - 48;
+            int val = args[i + 1].charAt(indexValue - 1) - NUMBER_OFFSET;
             String type = args[4];
             if (type.equals("-type 'single'") && val == 1) {
                 count++;
@@ -243,7 +246,7 @@ public class Parser {
 
     /**
      * Doing the checks to see if the input is valid.
-     * In case of a valid input, then the quiz is appended to the existing Quizes.json
+     * In case of a valid input, then the quiz is appended to the existing Quizzes.json
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
@@ -276,7 +279,7 @@ public class Parser {
         Boolean found = false;
         int id = -1;
         for (int i = 4; i < args.length; i++) { // Checking if question id exists.
-            id = args[i].charAt(args[i].lastIndexOf("'") - 1) - 48;
+            id = args[i].charAt(args[i].lastIndexOf("'") - 1) - NUMBER_OFFSET;
             if (questions != null && questions.get(0).CheckIdExists(questions, id)) {
                 found = true;
             } else {
@@ -305,7 +308,7 @@ public class Parser {
         quiz.put("quizName", quizName);
         quiz.put("quizCreator", username);
 
-        JSONWriteRead.WriteWithAppend(quiz, "Quizes", null);
+        JSONWriteRead.WriteWithAppend(quiz, "Quizzes", null);
         confirmation.put("message", "'status' : 'ok', 'message' : 'Quizz added succesfully'");
 
         return confirmation;
@@ -333,14 +336,14 @@ public class Parser {
             return confirmation;
         }
 
-        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
-        if (quizes == null) {
+        List<Quiz> quizzes = JSONWriteRead.MappingJSON("Quizzes");
+        if (quizzes == null) {
             confirmation.put("message", "'status':'error','message': 'Quizz does not exist'");
             return confirmation;
         }
 
         String text = args[3];
-        for (Quiz q: quizes) { // Searching for quiz with the specific name;
+        for (Quiz q: quizzes) { // Searching for quiz with the specific name;
             if (q.getName().equals(text)) {
                 confirmation.put("message", "'status':'ok','message': '" + q.getId() + "'");
                 return confirmation;
@@ -353,11 +356,11 @@ public class Parser {
 
     /**
      * Doing the checks to see if the input is valid.
-     * In case of a valid input, returns all the quizes.
+     * In case of a valid input, returns all the quizzes.
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetAllQuizes(String[] args) {
+    public static JSONObject ParseGetAllQuizzes(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -372,10 +375,10 @@ public class Parser {
             return confirmation;
         }
 
-        // Getting all the quizes from the database.
-        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+        // Getting all the quizzes from the database.
+        List<Quiz> quizzes = JSONWriteRead.MappingJSON("Quizzes");
         ArrayList<String> quizStrings = new ArrayList<>();
-        for (Quiz q: quizes) { // formatting to the required template.
+        for (Quiz q: quizzes) { // formatting to the required template.
             quizStrings.add("{" + "\"quizz_id\" : \"" +
                     q.getId() + "\", " + "\"quizz_name\" : " + "\"" +
                     q.getName().substring(7, q.getName().length() - 1)
@@ -391,13 +394,13 @@ public class Parser {
     /**
      * Looking for a quiz with the received id and if exists
      * returning details about this quiz via confirmation.
-     * @param quizes
+     * @param quizzes
      * @param id
      * @return
      */
-    public static JSONObject FindQuizWithSpecificId(List<Quiz> quizes, Integer id) {
+    public static JSONObject FindQuizWithSpecificId(List<Quiz> quizzes, Integer id) {
         JSONObject confirmation = new JSONObject();
-        for (Quiz q: quizes) {
+        for (Quiz q: quizzes) {
             if (q.getId() == id) { // Look for the questions contained in the quiz (by Question ID).
                 List<Question> questions = JSONWriteRead.MappingJSON("Questions");
                 if (questions == null) {
@@ -468,10 +471,10 @@ public class Parser {
             return confirmation;
         }
 
-        Integer id =  args[3].charAt(args[3].lastIndexOf("'") - 1) - 48;
-        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+        Integer id =  args[3].charAt(args[3].lastIndexOf("'") - 1) - NUMBER_OFFSET;
+        List<Quiz> quizzes = JSONWriteRead.MappingJSON("Quizzes");
 
-        confirmation = FindQuizWithSpecificId(quizes, id);
+        confirmation = FindQuizWithSpecificId(quizzes, id);
         if (confirmation.get("message") != null) {
             return confirmation;
         }
@@ -482,21 +485,21 @@ public class Parser {
 
     /**
      * Does the completion of a quiz if all the conditions are required.
-     * @param quizes
+     * @param quizzes
      * @param quizToCompleteId
      * @param args
      * @return
      */
 
-    public static JSONObject Submission(List<Quiz> quizes, Integer quizToCompleteId, String[] args){
+    public static JSONObject Submission(List<Quiz> quizzes, Integer quizToCompleteId, String[] args){
         JSONObject confirmation = new JSONObject();
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         Float grade = 0.f; // Stores the final result.
 
-        for (Quiz q: quizes) { // Looking for the quiz that has to be completed.
+        for (Quiz q: quizzes) { // Looking for the quiz that has to be completed.
             if (q.getId() == quizToCompleteId) {
                 /* First check if the user is the one that created the quiz.
-                Users can't complete their own quizes. */
+                Users can't complete their own quizzes. */
                 if (q.getQuizCreator().equals(username)) {
                     confirmation.put("message", "'status':'error','message':'You cannot answer your own quizz'");
                     return confirmation;
@@ -546,9 +549,9 @@ public class Parser {
                     return confirmation;
                 }
 
-                // Add quiz to the user's completedQuizes map.
+                // Add quiz to the user's completedQuizzes map.
                 user.AddNewCompletedQuiz(q.getName(), new WrapperQuizResult(q.getId(),
-                        Math.round(grade), user.getCompletedQuizesLength() + 1));
+                        Math.round(grade), user.getCompletedQuizzesLength() + 1));
 
                 // Update the user json file.
                 File oldUser = new File("src/Database/" + username + ".json");
@@ -590,15 +593,15 @@ public class Parser {
             return confirmation;
         }
 
-        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
-        if (quizes == null) {
+        List<Quiz> quizzes = JSONWriteRead.MappingJSON("Quizzes");
+        if (quizzes == null) {
             confirmation.put("message", "'status':'error','message':'No quiz was found'");
             return confirmation;
         }
         Integer quizToCompleteId = Integer.parseInt(String.valueOf(args[3].
                 charAt(args[3].lastIndexOf(" ") + 2)));
 
-        confirmation = Submission(quizes, quizToCompleteId, args);
+        confirmation = Submission(quizzes, quizToCompleteId, args);
         if (confirmation.get("message") != null) {
             return confirmation;
         }
@@ -650,7 +653,7 @@ public class Parser {
 
     /**
      * Doing the checks to see if the input is valid.
-     * In case of a valid input, return the all the solutions to the completed quizes of a user.
+     * In case of a valid input, return the all the solutions to the completed quizzes of a user.
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
@@ -669,10 +672,10 @@ public class Parser {
             return confirmation;
         }
         User user = JSONWriteRead.ReadUser(username);
-        Map<String, WrapperQuizResult> completedQuizes = user.getCompletedQuizes();
+        Map<String, WrapperQuizResult> completedQuizzes = user.getCompletedQuizzes();
         ArrayList<String> resultStrings = new ArrayList<>();
         Iterator<Map.Entry<String, WrapperQuizResult>> iterator =
-                completedQuizes.entrySet().iterator();
+                completedQuizzes.entrySet().iterator();
 
         while (iterator.hasNext()) {
             Map.Entry<String, WrapperQuizResult> entry = iterator.next();

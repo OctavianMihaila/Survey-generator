@@ -44,7 +44,7 @@ public class JSONWriteRead {
 
     /**
      * Creating a file with a given filename if that file does
-     * not exits. Otherwise append a new question to the existing file.
+     * not exist. Otherwise append a new question to the existing file.
      * @param obj
      * @param filename
      * @return
@@ -93,9 +93,9 @@ public class JSONWriteRead {
     }
 
     /**
-     * Mapping questions from JSON into Question/Quiz objects.
+     * Mapping questions/quizzes from JSON into Question/Quiz objects.
      * @param filename specifies what type of objects to create.
-     * @return List of Quizes/Questions.
+     * @return List of Quizzes/Questions.
      * @param <T>
      */
     public static <T> List<T> MappingJSON(String filename) {
@@ -138,7 +138,7 @@ public class JSONWriteRead {
             }
 
             return items;
-        } else if (filename.equals("Quizes")) {
+        } else if (filename.equals("Quizzes")) {
             for (int i = 0; i < objArray.size(); i++) {
                 JSONObject obj = (JSONObject) objArray.get(i);
                 Quiz quiz = new Quiz(counterIDs, (String)obj.get("quizName"),
@@ -187,17 +187,17 @@ public class JSONWriteRead {
             return null;
         }
 
-        Map<String, WrapperQuizResult> completedQuizes = new HashMap<>();
+        Map<String, WrapperQuizResult> completedQuizzes = new HashMap<>();
         JSONArray results = (JSONArray)obj.get("WrapperQuizResult");
         if (results != null) {
             for (int i = 0; i < results.size(); i++) {
                 JSONObject o = ((JSONObject)results.get(i));
                 WrapperQuizResult quizResult = new WrapperQuizResult((Number)o.get("QuizId"),
                         (Number)o.get("Score"), (Number)o.get("IndexInList"));
-                completedQuizes.put((String)o.get("QuizName"), quizResult);
+                completedQuizzes.put((String)o.get("QuizName"), quizResult);
             }
         }
 
-        return new User((String)obj.get("User"), (String)obj.get("Password"), completedQuizes);
+        return new User((String)obj.get("User"), (String)obj.get("Password"), completedQuizzes);
     }
 }
