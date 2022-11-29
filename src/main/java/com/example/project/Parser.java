@@ -1,8 +1,6 @@
 package com.example.project;
 
-import java.awt.desktop.QuitEvent;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.*;
 import org.json.simple.JSONObject;
 public class Parser {
@@ -40,6 +38,55 @@ public class Parser {
         } else {
             confirmation.put("message", "'status' : 'ok', 'message' : 'User created successfully'");
         }
+        return confirmation;
+    }
+
+    /**
+     * Does the necessary checks for an input that represents the list of answers to a Question.
+     * @param answers
+     * @param args
+     * @return
+     */
+    public static JSONObject ChecksForQuestionAnswersInput(Map<String, Boolean> answers, String args[]) {
+        JSONObject confirmation = new JSONObject();
+        Integer count = 0; // Counts how many true answer are in a single-answer question.
+
+        for (int i = 5; i < args.length; i += 2) {
+            // Checking if same answer is provided multiple times.
+            if (Question.CheckAnswerExists(answers, args[i])) {
+                confirmation.put("message", "'status':'error','message':" +
+                        "'Same answer provided more than once'");
+                return confirmation;
+            }
+
+            if (args[i].contains("is-correct")) { // Checking if answer i has no answer description
+                confirmation.put("message", "'status':'error','message':" +
+                        "'Answer " + args[i].charAt(args[i].
+                        lastIndexOf("i") - 2) + " has no answer description'");
+                return confirmation;
+            }
+            if (!args[i + 1].contains("correct")) { // Checking if answer i has no answer correct flag.
+                confirmation.put("message", "'status':'error','message':" +
+                        "'Answer " + args[i].charAt(args[i].
+                        lastIndexOf("-") + 1) +  " has no answer correct flag'");
+                return confirmation;
+            }
+
+            int indexValue = args[i + 1].lastIndexOf("'");
+            int val = args[i + 1].charAt(indexValue - 1) - 48;
+            String type = args[4];
+            if (type.equals("-type 'single'") && val == 1) {
+                count++;
+                if (count == 2) { // Checking if a single-answer question has more the one correct answer.
+                    confirmation.put("message", "'status':'error','message':" +
+                            "'Single correct answer question has more than one correct answer'");
+                    return confirmation;
+                }
+            }
+
+            answers.put(args[i], Integer.toString(val).equals("1") ? true : false);
+        }
+
         return confirmation;
     }
 
@@ -97,38 +144,12 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'No question type provided'");
             return confirmation;
         }
-        Integer count = 0; // Counts how many true answer are in a single-answer question.
+
+        // Checks if the provided list of answers is valid.
         Map<String, Boolean> answers = new HashMap<String, Boolean>();
-        for (int i = 5; i < args.length; i += 2) {
-            // TO DO: Method to check if a answer text is present multiple times. Iterate and check map.
-            if (Question.CheckAnswerExists(answers, args[i])) { // Checking if same answer is provided multiple times.
-                confirmation.put("message", "'status':'error','message':" +
-                        "'Same answer provided more than once'");
-                return confirmation;
-            }
-
-            if (args[i].contains("is-correct")) { // Checking if answer i has no answer description
-                confirmation.put("message", "'status':'error','message':" +
-                        "'Answer " + args[i].charAt(args[i].lastIndexOf("i") - 2) + " has no answer description'");
-                return confirmation;
-            }
-            if (!args[i + 1].contains("correct")) { // Checking if answer i has no answer correct flag.
-                confirmation.put("message", "'status':'error','message':" +
-                        "'Answer " + args[i].charAt(args[i].lastIndexOf("-") + 1) +  " has no answer correct flag'");
-                return confirmation;
-            }
-
-            int indexValue = args[i + 1].lastIndexOf("'");
-            int val = args[i + 1].charAt(indexValue - 1) - 48;
-            if (type.equals("-type 'single'") && val == 1) {
-                count++;
-                if (count == 2) { // Checking if a single-answer question has more the one correct answer.
-                    confirmation.put("message", "'status':'error','message':" +
-                            "'Single correct answer question has more than one correct answer'");
-                    return confirmation;
-                }
-            }
-            answers.put(args[i], Integer.toString(val).equals("1") ? true : false);
+        confirmation = ChecksForQuestionAnswersInput(answers, args);
+        if (confirmation.get("message") != null) {
+            return confirmation;
         }
 
         JSONObject question = new JSONObject();
@@ -140,7 +161,6 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-
         if (Question.CheckAlreadyExists(text) == true) { // Check if question is present in Question.json.
             confirmation.put("message", "'status':'error','message':'Question already exists'");
             return confirmation;
@@ -149,7 +169,6 @@ public class Parser {
         JSONWriteRead.WriteWithAppend(question, "Questions", null);
 
         confirmation.put("message", "'status' : 'ok', 'message' : 'Question added successfully'");
-
         return confirmation;
     }
 
@@ -165,20 +184,19 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        // TO DO: Check if question exists. (text) -> not found
-        // TO DO: Return id and put in confirmation
+
         List<Question> questions = JSONWriteRead.MappingJSON("Questions");
         if (questions != null) {
-            for (Question q: questions) {
-                if (q.getText().equals(args[3])) {
+            for (Question q: questions) { // Looking for the question with the received text.
+                String text = args[3];
+                if (q.getText().equals(text)) {
                     confirmation.put("message", "'status' : 'ok', 'message' : '" + q.getId() + "'");
                     return confirmation;
                 }
@@ -202,13 +220,14 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
+
         // Getting all the questions from the database.
         List<Question> questions = JSONWriteRead.MappingJSON("Questions");
         ArrayList<String> questionStrings = new ArrayList<>();
@@ -231,8 +250,7 @@ public class Parser {
     public static JSONObject ParseCreateQuiz(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
@@ -240,9 +258,9 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'Quizz has more than 10 questions'");
             return confirmation;
         }
+
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
@@ -268,7 +286,8 @@ public class Parser {
         }
 
         if (found == false && id != -1) {
-            confirmation.put("message", "'status':'error','message':'Question ID for question " + id + " does not exist'");
+            confirmation.put("message",
+                    "'status':'error','message':'Question ID for question " + id + " does not exist'");
             return confirmation;
         }
 
@@ -285,8 +304,6 @@ public class Parser {
         quiz.put("is_completed", "False");
         quiz.put("quizName", quizName);
         quiz.put("quizCreator", username);
-
-
 
         JSONWriteRead.WriteWithAppend(quiz, "Quizes", null);
         confirmation.put("message", "'status' : 'ok', 'message' : 'Quizz added succesfully'");
@@ -308,9 +325,9 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
@@ -323,8 +340,7 @@ public class Parser {
         }
 
         String text = args[3];
-        // Searching for quiz with the specific name;
-        for (Quiz q: quizes) {
+        for (Quiz q: quizes) { // Searching for quiz with the specific name;
             if (q.getName().equals(text)) {
                 confirmation.put("message", "'status':'ok','message': '" + q.getId() + "'");
                 return confirmation;
@@ -333,7 +349,6 @@ public class Parser {
 
         confirmation.put("message", "'status':'error','message': 'Quizz does not exist'");
         return confirmation;
-
     }
 
     /**
@@ -349,15 +364,13 @@ public class Parser {
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-
-        // TO DO: Check if quiz does not exist (FOR BONUS, also do that for questions)
 
         // Getting all the quizes from the database.
         List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
@@ -365,41 +378,27 @@ public class Parser {
         for (Quiz q: quizes) { // formatting to the required template.
             quizStrings.add("{" + "\"quizz_id\" : \"" +
                     q.getId() + "\", " + "\"quizz_name\" : " + "\"" +
-                    q.getName().substring(7, q.getName().length() - 1) + "\", " + "\"is_completed\" : " + "\""
+                    q.getName().substring(7, q.getName().length() - 1)
+                    + "\", " + "\"is_completed\" : " + "\""
                     + q.getIs_completed().toString().substring(0, 1).toUpperCase() +
                     q.getIs_completed().toString().substring(1) + "\"" + "}");
         }
 
         confirmation.put("message", "'status' : 'ok', 'message' : '" + quizStrings + "'");
         return confirmation;
-
     }
 
     /**
-     * Doing the checks to see if the input is valid.
-     * In case of a valid input, returns the quiz detaild for the quiz with the specified id.
-     * @param args
-     * @return JSONObject that contains the text confirmation.
+     * Looking for a quiz with the received id and if exists
+     * returning details about this quiz via confirmation.
+     * @param quizes
+     * @param id
+     * @return
      */
-    public static JSONObject ParseGetQuizDetailsByID(String[] args) {
+    public static JSONObject FindQuizWithSpecificId(List<Quiz> quizes, Integer id) {
         JSONObject confirmation = new JSONObject();
-
-        if (args.length < 3) { // Checking if username and password are provided.
-            confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
-            return confirmation;
-        }
-        String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
-        String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
-        if (User.Authentication(username, password) == false) {
-            confirmation.put("message", "'status':'error','message':'Login failed'");
-            return confirmation;
-        }
-        Integer id =  args[3].charAt(args[3].lastIndexOf("'") - 1) - 48;
-        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
         for (Quiz q: quizes) {
-            if (q.getId() == id) {
-                // look for the questions contained in the quiz (by Question ID).
+            if (q.getId() == id) { // Look for the questions contained in the quiz (by Question ID).
                 List<Question> questions = JSONWriteRead.MappingJSON("Questions");
                 if (questions == null) {
                     System.out.println("there are no questions");
@@ -425,7 +424,6 @@ public class Parser {
                     Collections.reverse(sortedAnswers);
 
                     ArrayList<String> answersString = new ArrayList<>();
-
                     for (String answer: sortedAnswers) {
                         answersString.add("{\"answer_name\":\"" +
                                 answer.substring(answer.lastIndexOf(" ") + 2,
@@ -443,75 +441,58 @@ public class Parser {
 
                 confirmation.put("message", "'status':'ok','message':'" + questionStrings + "'");
                 return confirmation;
-
-
             }
         }
 
-        confirmation.put("message", "'status':'ok','message': 'TO PUT QUIZEZ''");
-        return confirmation;
-
+        return null;
     }
 
     /**
      * Doing the checks to see if the input is valid.
-     * In case of a valid inout, returns the answers for the specified quiz.
+     * In case of a valid input, returns the quiz detaild for the quiz with the specified id.
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetQuizAnswers(String[] args) {
+    public static JSONObject ParseGetQuizDetailsByID(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        // TO DO: Check if quiz does not exist
-        // TO DO: Return the quiz details (without the value of truth for the questions).
 
-        confirmation.put("message", "'status':'ok','message': 'TO PUT QUIZEZ''");
+        Integer id =  args[3].charAt(args[3].lastIndexOf("'") - 1) - 48;
+        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+
+        confirmation = FindQuizWithSpecificId(quizes, id);
+        if (confirmation.get("message") != null) {
+            return confirmation;
+        }
+
+        confirmation.put("message", "'status':'ok','message':'Quizz does not exist'");
         return confirmation;
-
     }
 
     /**
-     * Doing the checks to see if the input is valid.
-     * In case of a valid input, submits a quiz and returns the result in confirmation.
+     * Does the completion of a quiz if all the conditions are required.
+     * @param quizes
+     * @param quizToCompleteId
      * @param args
-     * @return JSONObject that contains the text confirmation (with result).
+     * @return
      */
-    public static JSONObject ParseSubmitAnswers(String[] args) {
+
+    public static JSONObject Submission(List<Quiz> quizes, Integer quizToCompleteId, String[] args){
         JSONObject confirmation = new JSONObject();
-
-        if (args.length < 3) { // Checking if username and password are provided.
-            confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
-            return confirmation;
-        }
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
-        String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
-            confirmation.put("message", "'status':'error','message':'Login failed'");
-            return confirmation;
-        }
-        if (args.length < 4) {
-            confirmation.put("message", "'status':'error','message':'No quizz identifier was provided'");
-            return confirmation;
-        }
+        Float grade = 0.f; // Stores the final result.
 
-        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
-        if (quizes == null) {
-            confirmation.put("message", "'status':'error','message':'No quiz was found'");
-            return confirmation;
-        }
-        Integer quizToCompleteId = Integer.parseInt(String.valueOf(args[3].
-                charAt(args[3].lastIndexOf(" ") + 2)));
         for (Quiz q: quizes) { // Looking for the quiz that has to be completed.
             if (q.getId() == quizToCompleteId) {
                 /* First check if the user is the one that created the quiz.
@@ -527,8 +508,6 @@ public class Parser {
                     confirmation.put("message", "'status':'error','message':'You already submitted this quizz'");
                     return confirmation;
                 }
-
-                Float grade = 0.f; // Stores the final result.
 
                 // Store all the answer ids in a list.
                 ArrayList<Integer> answerIdList = new ArrayList<>();
@@ -582,6 +561,48 @@ public class Parser {
             }
         }
 
+        return confirmation;
+    }
+
+
+    /**
+     * Doing the checks to see if the input is valid.
+     * In case of a valid input, submits a quiz and returns the result in confirmation.
+     * @param args
+     * @return JSONObject that contains the text confirmation (with result).
+     */
+    public static JSONObject ParseSubmitAnswers(String[] args) {
+        JSONObject confirmation = new JSONObject();
+
+        if (args.length < 3) { // Checking if username and password are provided.
+            confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
+            return confirmation;
+        }
+
+        String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
+        String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
+        if (User.Authentication(username, password) == false) {
+            confirmation.put("message", "'status':'error','message':'Login failed'");
+            return confirmation;
+        }
+        if (args.length < 4) {
+            confirmation.put("message", "'status':'error','message':'No quizz identifier was provided'");
+            return confirmation;
+        }
+
+        List<Quiz> quizes = JSONWriteRead.MappingJSON("Quizes");
+        if (quizes == null) {
+            confirmation.put("message", "'status':'error','message':'No quiz was found'");
+            return confirmation;
+        }
+        Integer quizToCompleteId = Integer.parseInt(String.valueOf(args[3].
+                charAt(args[3].lastIndexOf(" ") + 2)));
+
+        confirmation = Submission(quizes, quizToCompleteId, args);
+        if (confirmation.get("message") != null) {
+            return confirmation;
+        }
+
         confirmation.put("message", "'status':'error','message':'No quiz was found'");
         return confirmation;
     }
@@ -595,8 +616,7 @@ public class Parser {
     public static JSONObject ParseDeleteQuiz(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
@@ -637,14 +657,13 @@ public class Parser {
     public static JSONObject ParseGetMySolutions(String[] args) {
         JSONObject confirmation = new JSONObject();
 
-        // Checking if username and password are provided.
-        if (args.length < 3) {
+        if (args.length < 3) { // Checking if username and password are provided.
             confirmation.put("message", "'status':'error','message':'You need to be authenticated'");
             return confirmation;
         }
+
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-
         if (User.Authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
@@ -652,7 +671,6 @@ public class Parser {
         User user = JSONWriteRead.ReadUser(username);
         Map<String, WrapperQuizResult> completedQuizes = user.getCompletedQuizes();
         ArrayList<String> resultStrings = new ArrayList<>();
-
         Iterator<Map.Entry<String, WrapperQuizResult>> iterator =
                 completedQuizes.entrySet().iterator();
 

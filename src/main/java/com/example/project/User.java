@@ -11,9 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class User {
@@ -33,27 +31,12 @@ public class User {
         this.completedQuizes = completedQuizes;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public Float getGrade() {
-        return grade;
-    }
-
     public Map<String, WrapperQuizResult> getCompletedQuizes() {
         return completedQuizes;
     }
 
     public Integer getCompletedQuizesLength() {
         return this.completedQuizes.size();
-    }
-    public Integer getNrQuestionsAnswered() {
-        return nrQuestionsAnswered;
-    }
-
-    public void IncNrQuestionsAnswered() {
-        this.nrQuestionsAnswered++;
     }
 
     public static Boolean Authentication(String username, String password) {
@@ -131,7 +114,6 @@ public class User {
         }
 
         obj.put("WrapperQuizResult", results);
-
         return obj;
     }
 

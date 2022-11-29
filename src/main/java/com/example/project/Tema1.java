@@ -1,28 +1,20 @@
 package com.example.project;
 
 import org.json.simple.JSONObject;
-import  org.json.simple.JSONArray;
-
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException.*;
 import java.util.Arrays;
 
 public class Tema1 {
-
 	public static void main(final String[] args) throws IllegalArgumentException {
-
 		if(args == null)
 		{
 			System.out.print("Hello world!");
-
 			return;
 		}
 
 		String request = args[0];
 		JSONObject confirmation = null;
 
-		// TO ADD: Singleton pattern
 		switch (request) {
 			case "-create-user":
 				confirmation = Parser.ParseCreateUser(args);

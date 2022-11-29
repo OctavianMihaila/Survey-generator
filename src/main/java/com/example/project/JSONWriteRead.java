@@ -8,12 +8,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.awt.image.BufferedImageFilter;
 import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class JSONWriteRead {
     /**
@@ -140,7 +138,6 @@ public class JSONWriteRead {
             }
 
             return items;
-
         } else if (filename.equals("Quizes")) {
             for (int i = 0; i < objArray.size(); i++) {
                 JSONObject obj = (JSONObject) objArray.get(i);
@@ -153,7 +150,6 @@ public class JSONWriteRead {
             }
 
             return items;
-
         } else {
             System.out.println("Invalid filename");
             return null;
@@ -190,6 +186,7 @@ public class JSONWriteRead {
             System.out.println("User does not exist");
             return null;
         }
+
         Map<String, WrapperQuizResult> completedQuizes = new HashMap<>();
         JSONArray results = (JSONArray)obj.get("WrapperQuizResult");
         if (results != null) {
@@ -200,21 +197,7 @@ public class JSONWriteRead {
                 completedQuizes.put((String)o.get("QuizName"), quizResult);
             }
         }
-//        JSONArray arrayresults = completedQuizes.get("WrapperQuizResult");
-//
-
-//        Iterator<Map.Entry<String, WrapperQuizResult>> iterator =
-//                completedQuizes.entrySet().iterator();
-
-//        while (iterator.hasNext()) {
-//            Map.Entry<String, WrapperQuizResult> entry = iterator.next();
-//            WrapperQuizResult wrapper = entry.getValue()
-//            System.out.println(res.get("Score"));
-//        }
-
-        // TO DO: PRINT MAP TO TEST.
 
         return new User((String)obj.get("User"), (String)obj.get("Password"), completedQuizes);
-
     }
 }

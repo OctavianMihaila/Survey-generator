@@ -24,7 +24,8 @@ public class Quiz {
 
     public static int countIDs = 1; // Used to find the quiz that has to be deleted
 
-    public Quiz(int id, String name, ArrayList<Integer> questionsIDs, Boolean is_completed, String quizCreator) {
+    public Quiz(int id, String name, ArrayList<Integer> questionsIDs,
+                Boolean is_completed, String quizCreator) {
         this.id = id;
         this.name = name;
         this.questionsIDs = questionsIDs;
@@ -52,6 +53,11 @@ public class Quiz {
         return quizCreator;
     }
 
+    /**
+     * Checks if a quiz with a specific text already exists.
+     * @param text
+     * @return
+     */
     public static Boolean CheckAlreadyExists(String text) {
         String filePath = "src/Database/Quizes.json";
         JSONParser jsonParser = new JSONParser();
@@ -71,9 +77,11 @@ public class Quiz {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         if (objArray == null) {
             return false;
         }
+
         for (int i = 0; i < objArray.size(); i++) {
             if (((JSONObject)objArray.get(i)).get("quizName").equals(text)) {
                 return true;
@@ -83,6 +91,11 @@ public class Quiz {
         return false;
     }
 
+    /**
+     * Deletes a quiz from Quizes.json
+     * @param ID
+     * @return
+     */
     public static Boolean DeleteQuiz(String ID) {
         String filePath = "src/Database/Quizes.json";
         JSONParser jsonParser = new JSONParser();
