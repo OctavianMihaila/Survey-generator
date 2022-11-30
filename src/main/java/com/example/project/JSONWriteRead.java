@@ -118,7 +118,7 @@ public class JSONWriteRead {
                 e.printStackTrace();
             } catch (ParseException e) {
                 e.printStackTrace();
-            }
+            } catch (Exception ignore) {}
 
             if (objArray == null) {
                 System.out.println("Empty file(Mapping JSON)");
