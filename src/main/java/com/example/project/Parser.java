@@ -1,6 +1,7 @@
 package com.example.project;
 
 import java.io.File;
+import java.text.Normalizer;
 import java.util.*;
 import org.json.simple.JSONObject;
 public class Parser {
@@ -236,8 +237,8 @@ public class Parser {
         ArrayList<String> questionStrings = new ArrayList<>();
         for (Question q: questions) { // formatting to the required template.
             String text =  q.getText().substring(7, q.getText().length() - 1);
-            text.replace("î", "i");
-            text.replace("ă", "a");
+            text = Normalizer.normalize(text, Normalizer.Form.NFD);
+            text = text.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
             questionStrings.add("{" + "\"question_id\" : \"" +
                     q.getId() + "\", " + "\"question_name\" : " + "\"" +
@@ -440,8 +441,9 @@ public class Parser {
                     }
                     String text =  question.getText().substring(6).
                             replace("'", "\"");
-                    text.replace("î", "i");
-                    text.replace("ă", "a");
+
+                    text = Normalizer.normalize(text, Normalizer.Form.NFD);
+                    text = text.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
                     questionStrings.add("{\"question-name\":" + text + ", \"question_index\":\""
                             + question.getId() + "\", \"question_type\":" +
