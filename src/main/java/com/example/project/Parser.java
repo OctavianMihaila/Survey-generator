@@ -235,9 +235,13 @@ public class Parser {
         List<Question> questions = JSONWriteRead.MappingJSON("Questions");
         ArrayList<String> questionStrings = new ArrayList<>();
         for (Question q: questions) { // formatting to the required template.
+            String text =  q.getText().substring(7, q.getText().length() - 1);
+            text.replace("î", "i");
+            text.replace("ă", "a");
+
             questionStrings.add("{" + "\"question_id\" : \"" +
                     q.getId() + "\", " + "\"question_name\" : " + "\"" +
-                    q.getText().substring(7, q.getText().length() - 1) + "\"" + "}");
+                    text + "\"" + "}");
         }
 
         confirmation.put("message", "'status' : 'ok', 'message' : '" + questionStrings + "'");
@@ -434,9 +438,12 @@ public class Parser {
                                 "\"answer_id\":\"" + idCount + "\"}");
                         idCount++;
                     }
+                    String text =  question.getText().substring(6).
+                            replace("'", "\"");
+                    text.replace("î", "i");
+                    text.replace("ă", "a");
 
-                    questionStrings.add("{\"question-name\":" + question.getText().substring(6).
-                            replace("'", "\"") + ", \"question_index\":\""
+                    questionStrings.add("{\"question-name\":" + text + ", \"question_index\":\""
                             + question.getId() + "\", \"question_type\":" +
                             question.getType().substring(6).replace("'", "\"")
                             + ", \"answers\":\"" + answersString +  "\"}");

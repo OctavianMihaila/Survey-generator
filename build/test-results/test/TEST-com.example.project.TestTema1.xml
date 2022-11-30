@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.project.TestTema1" tests="74" skipped="0" failures="0" errors="0" timestamp="2022-11-30T09:51:51" hostname="kali" time="0.589">
+<testsuite name="com.example.project.TestTema1" tests="74" skipped="0" failures="0" errors="0" timestamp="2022-11-30T19:08:11" hostname="kali" time="1.154">
   <properties/>
-  <testcase name="testSubmitQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.046"/>
-  <testcase name="testDeleteQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.045"/>
-  <testcase name="testGetAllQuizezLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testGetQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testCreateQuizNameAlreadyExists()" classname="com.example.project.TestTema1" time="0.019"/>
-  <testcase name="testQuestionAnswerHasNoAnswerFlag()" classname="com.example.project.TestTema1" time="0.012"/>
-  <testcase name="testGetAllQuizezNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testSubmitQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.061"/>
+  <testcase name="testDeleteQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.146"/>
+  <testcase name="testGetAllQuizezLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.01"/>
+  <testcase name="testGetQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.014"/>
+  <testcase name="testCreateQuizNameAlreadyExists()" classname="com.example.project.TestTema1" time="0.029"/>
+  <testcase name="testQuestionAnswerHasNoAnswerFlag()" classname="com.example.project.TestTema1" time="0.016"/>
+  <testcase name="testGetAllQuizezNoUsername()" classname="com.example.project.TestTema1" time="0.0"/>
+  <testcase name="testCreateQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.01"/>
   <testcase name="testSubmitQuizNoId()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testCreateQuestionLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testQuestionAnswerHasNoDescription()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testGetQuestionNotFound()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testDeleteQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testDummy()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetSolutionsNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testSubmitQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testCreateUserNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testCreateQuestionLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testQuestionAnswerHasNoDescription()" classname="com.example.project.TestTema1" time="0.008"/>
+  <testcase name="testGetQuestionNotFound()" classname="com.example.project.TestTema1" time="0.003"/>
+  <testcase name="testDeleteQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.005"/>
+  <testcase name="testDummy()" classname="com.example.project.TestTema1" time="0.0"/>
+  <testcase name="testGetSolutionsNoUsername()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testSubmitQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.006"/>
+  <testcase name="testCreateUserNoUsername()" classname="com.example.project.TestTema1" time="0.002"/>
   <testcase name="testCreateQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.002"/>
   <testcase name="testSubmitQuizNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testSubmitQuizNotFound()" classname="com.example.project.TestTema1" time="0.005"/>
-  <testcase name="testGetQuizDetailsNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuestionWithExistingName()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testGetSolutionsSuccessfully()" classname="com.example.project.TestTema1" time="0.035"/>
-  <testcase name="testSingleAnswerQuestionHasMultipleCorrectAnswers()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testCreateQuizNoUsername()" classname="com.example.project.TestTema1" time="0.007"/>
-  <testcase name="testGetAllQuestionsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.013"/>
-  <testcase name="testQuestionHasNoAnswers()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testSubmitQuizNotFound()" classname="com.example.project.TestTema1" time="0.024"/>
+  <testcase name="testGetQuizDetailsNoUsername()" classname="com.example.project.TestTema1" time="0.01"/>
+  <testcase name="testCreateQuestionWithExistingName()" classname="com.example.project.TestTema1" time="0.008"/>
+  <testcase name="testGetSolutionsSuccessfully()" classname="com.example.project.TestTema1" time="0.072"/>
+  <testcase name="testSingleAnswerQuestionHasMultipleCorrectAnswers()" classname="com.example.project.TestTema1" time="0.007"/>
+  <testcase name="testCreateQuizNoUsername()" classname="com.example.project.TestTema1" time="0.005"/>
+  <testcase name="testGetAllQuestionsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testQuestionHasNoAnswers()" classname="com.example.project.TestTema1" time="0.003"/>
   <testcase name="testGetQuestionLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetAllQuestionsUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testGetQuizNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetAllQuizezUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testQuestionHasOnlyOneAnswer()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testDeleteQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.015"/>
-  <testcase name="testGetAllQuestionsNoUsername()" classname="com.example.project.TestTema1" time="0.005"/>
-  <testcase name="testDeleteQuizNoUsername()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testCreateQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testDeleteQuizNotFound()" classname="com.example.project.TestTema1" time="0.008"/>
+  <testcase name="testGetAllQuestionsUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testGetQuizNoUsername()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testGetAllQuizezUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testQuestionHasOnlyOneAnswer()" classname="com.example.project.TestTema1" time="0.003"/>
+  <testcase name="testDeleteQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.032"/>
+  <testcase name="testGetAllQuestionsNoUsername()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testDeleteQuizNoUsername()" classname="com.example.project.TestTema1" time="0.019"/>
+  <testcase name="testCreateQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testDeleteQuizNotFound()" classname="com.example.project.TestTema1" time="0.019"/>
   <testcase name="testGetAllQuizezNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testDeleteQuizNoId()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testDeleteQuizNoId()" classname="com.example.project.TestTema1" time="0.001"/>
   <testcase name="testGetQuizNotFound()" classname="com.example.project.TestTema1" time="0.001"/>
   <testcase name="testCreateQuestionSuccessfully()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testGetQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testGetQuizUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.0"/>
   <testcase name="testCreateUserUserCreatedSuccesfully()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetSolutionsNoPassword()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testGetQuestionSuccessfully()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testGetSolutionsNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testGetQuestionSuccessfully()" classname="com.example.project.TestTema1" time="0.003"/>
   <testcase name="testCreateUserNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.014"/>
+  <testcase name="testGetQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.005"/>
   <testcase name="testGetQuizDetailsUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testSubmitQuiz2Of3QuestionsAnswered()" classname="com.example.project.TestTema1" time="0.012"/>
-  <testcase name="testQuestionDuplicateAnswers()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testSubmitQuizNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuizDetailsNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuizNoPassword()" classname="com.example.project.TestTema1" time="0.008"/>
-  <testcase name="testQuestionHasNoText()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testSubmitQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testGetQuizNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetSolutionsUserDoesNotExists()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.001"/>
+  <testcase name="testSubmitQuiz2Of3QuestionsAnswered()" classname="com.example.project.TestTema1" time="0.04"/>
+  <testcase name="testQuestionDuplicateAnswers()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testGetQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testSubmitQuizNoPassword()" classname="com.example.project.TestTema1" time="0.008"/>
+  <testcase name="testGetQuizDetailsNoPassword()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testCreateQuestionUsernameDoesNotExists()" classname="com.example.project.TestTema1" time="0.008"/>
+  <testcase name="testCreateQuizNoPassword()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testQuestionHasNoText()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testSubmitQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.021"/>
+  <testcase name="testGetQuizNoPassword()" classname="com.example.project.TestTema1" time="0.006"/>
+  <testcase name="testGetSolutionsUserDoesNotExists()" classname="com.example.project.TestTema1" time="0.009"/>
+  <testcase name="testGetQuestionNoUsername()" classname="com.example.project.TestTema1" time="0.011"/>
   <testcase name="testGetAllQuestionsNoPassword()" classname="com.example.project.TestTema1" time="0.0"/>
-  <testcase name="testCreateQuizQuestionIdDoesNotExist()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testDeleteQuizNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testCreateQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetAllQuizezSuccessfully()" classname="com.example.project.TestTema1" time="0.035"/>
-  <testcase name="testGetSolutionsWrongCredentials()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testCreateUserUserAlreadyExists()" classname="com.example.project.TestTema1" time="0.003"/>
-  <testcase name="testGetAllQuestionsSuccessfully()" classname="com.example.project.TestTema1" time="0.033"/>
-  <testcase name="testSubmitQuizAnsweredWrong()" classname="com.example.project.TestTema1" time="0.005"/>
-  <testcase name="testSubmitQuiz1QuestionAnsweredWrong2QuestionsAnsweredCorectly()" classname="com.example.project.TestTema1" time="0.03"/>
+  <testcase name="testCreateQuizQuestionIdDoesNotExist()" classname="com.example.project.TestTema1" time="0.005"/>
+  <testcase name="testDeleteQuizNoPassword()" classname="com.example.project.TestTema1" time="0.006"/>
+  <testcase name="testCreateQuestionNoPassword()" classname="com.example.project.TestTema1" time="0.01"/>
+  <testcase name="testGetAllQuizezSuccessfully()" classname="com.example.project.TestTema1" time="0.039"/>
+  <testcase name="testGetSolutionsWrongCredentials()" classname="com.example.project.TestTema1" time="0.018"/>
+  <testcase name="testCreateUserUserAlreadyExists()" classname="com.example.project.TestTema1" time="0.002"/>
+  <testcase name="testGetAllQuestionsSuccessfully()" classname="com.example.project.TestTema1" time="0.057"/>
+  <testcase name="testSubmitQuizAnsweredWrong()" classname="com.example.project.TestTema1" time="0.037"/>
+  <testcase name="testSubmitQuiz1QuestionAnsweredWrong2QuestionsAnsweredCorectly()" classname="com.example.project.TestTema1" time="0.011"/>
   <testcase name="testGetQuizLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.001"/>
-  <testcase name="testGetQuizDetailsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.002"/>
-  <testcase name="testCreateQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.007"/>
-  <testcase name="testGetQuizDetailsSuccessfully()" classname="com.example.project.TestTema1" time="0.063"/>
-  <system-out><![CDATA[{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}{'status':'error','message': 'Cleanup finished successfully'}]]></system-out>
+  <testcase name="testGetQuizDetailsLoginCredentialsAreWrong()" classname="com.example.project.TestTema1" time="0.004"/>
+  <testcase name="testCreateQuizSuccessfully()" classname="com.example.project.TestTema1" time="0.008"/>
+  <testcase name="testGetQuizDetailsSuccessfully()" classname="com.example.project.TestTema1" time="0.047"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
