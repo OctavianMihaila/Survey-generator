@@ -237,8 +237,6 @@ public class Parser {
         ArrayList<String> questionStrings = new ArrayList<>();
         for (Question q: questions) { // formatting to the required template.
             String text =  q.getText().substring(7, q.getText().length() - 1);
-            text = Normalizer.normalize(text, Normalizer.Form.NFD);
-            text = text.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
             questionStrings.add("{" + "\"question_id\" : \"" +
                     q.getId() + "\", " + "\"question_name\" : " + "\"" +
@@ -442,8 +440,6 @@ public class Parser {
                     String text =  question.getText().substring(6).
                             replace("'", "\"");
 
-                    text = Normalizer.normalize(text, Normalizer.Form.NFD);
-                    text = text.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
                     questionStrings.add("{\"question-name\":" + text + ", \"question_index\":\""
                             + question.getId() + "\", \"question_type\":" +
