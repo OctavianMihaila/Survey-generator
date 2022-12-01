@@ -1,4 +1,18 @@
-/* Mihăilă Octavian-Iulian / 323CB */
+# Structure
+
+        -> The quizzes generator allows the user to create and manage quizzes using some commands.
+           The most important of the commands are:
+
+            >> Create Question: add a new question(with a single or multiple response type)
+            in the system visible to all users.
+
+            >> Create Quiz: add a new questionnaire to the system using questions created by any user.
+
+            >> Delete Quiz: Removes a own quiz from the system.
+
+            >> Submit Quiz: Answer to a quiz from the system, regardless of which other user created it.
+
+            >> Return my answers: Returns a detailed statistics containing the results of completed quizzes.
 
 # Implementation:
 

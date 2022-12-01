@@ -6,13 +6,6 @@ apply plugin: 'java'
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
-repositories {
-	mavenCentral()
-}
-
-test {
-	systemProperty "file.encoding", "utf-8"
-}
 
 repositories {
 	mavenCentral()
@@ -30,4 +23,5 @@ test {
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
+	systemProperty "file.encoding", "utf-8"
 }
