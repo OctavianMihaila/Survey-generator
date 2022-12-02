@@ -22,6 +22,8 @@ public class Quiz {
 
     private String quizCreator;
 
+    static final int NUMBER_OFFSET = 48;
+
     public static int countIDs = 1; // Used to find the quiz that has to be deleted
 
     public Quiz(int id, String name, ArrayList<Integer> questionsIDs,
@@ -92,6 +94,32 @@ public class Quiz {
     }
 
     /**
+     * Mapping from JSON to Quiz objects and deleting a quiz with a specific ID.
+     * @param objArray
+     * @param ID
+     * @return
+     */
+    public static Boolean DeleteFromJSON(JSONArray objArray, String ID) {
+        countIDs = 1;
+        for (int i = 0; i < objArray.size(); i++) {
+            JSONObject obj = (JSONObject)objArray.get(i);
+            Quiz quiz = new Quiz(countIDs, (String)obj.get("quizName"),
+                    (ArrayList<Integer>)obj.get("questionsIDs"),
+                    Boolean.parseBoolean((String)obj.get("is_completed")),
+                    (String)obj.get("quizCreator"));
+            countIDs++;
+
+            if (quiz.getId() == (ID.charAt(ID.lastIndexOf("'") - 1) - NUMBER_OFFSET)) {
+                objArray.remove(obj);
+                JSONWriteRead.WriteWithAppend(null, "Quizzes", objArray);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Deletes a quiz from Quizzes.json
      * @param ID
      * @return
@@ -119,23 +147,11 @@ public class Quiz {
             return false;
         }
 
-        countIDs = 1;
         // Mapping from JSON to Quiz objects and deleting a quiz with a specific ID.
-        for (int i = 0; i < objArray.size(); i++) {
-            JSONObject obj = (JSONObject)objArray.get(i);
-            Quiz quiz = new Quiz(countIDs, (String)obj.get("quizName"),
-                    (ArrayList<Integer>)obj.get("questionsIDs"),
-                    Boolean.parseBoolean((String)obj.get("is_completed")),
-                    (String)obj.get("quizCreator"));
-            countIDs++;
-
-            if (quiz.getId() == (ID.charAt(ID.lastIndexOf("'") - 1) - 48)) {
-                objArray.remove(obj);
-                JSONWriteRead.WriteWithAppend(null, "Quizzes", objArray);
-                return true;
-            }
+        if (Quiz.DeleteFromJSON(objArray, ID)) {
+            return true;
+        } else {
+            return false;
         }
-
-        return false;
     }
 }

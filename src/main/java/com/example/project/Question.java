@@ -124,6 +124,74 @@ public class Question {
     }
 
     /**
+     * Calculates the grade for a question that is single answer type.
+     * @param iterator
+     * @param answerIdToCheck
+     * @param answerIdList
+     * @return
+     */
+    public Float CalculateGradeSingle(Iterator<Map.Entry<String, Boolean>> iterator,
+                                      Integer answerIdToCheck, ArrayList<Integer> answerIdList) {
+        while (iterator.hasNext()) {
+            Map.Entry<String, Boolean> entry = iterator.next();
+            if (answerIdToCheck == 1) {
+                if (entry.getValue() == true) {
+                    answerIdList.remove(0);
+                    return 100.f;
+                } else {
+                    answerIdList.remove(0);
+                    return -100.f;
+                }
+            }
+            answerIdToCheck--;
+        }
+
+        return 0.f; // Case when no answer is provided.
+    }
+
+    /**
+     * Calculates the grade for a question that is multiple answer type.
+     * @param answerIdList
+     * @param iterator
+     * @param answerIdToCheck
+     * @param correctAnswerShare
+     * @param wrongAnswerShare
+     * @return
+     */
+    public Float CalculateGradeMultiple(ArrayList<Integer> answerIdList, Iterator<Map.Entry<String,
+                                        Boolean>> iterator, Integer answerIdToCheck,
+                                        Float correctAnswerShare, Float wrongAnswerShare) {
+        Float grade = 0.f;
+
+        while (iterator.hasNext()) { // Looking for the selected answer in the answers to the question.
+            Map.Entry<String, Boolean> entry = iterator.next();
+            if (answerIdToCheck == 1) {
+                if (entry.getValue() == true) {
+                    grade += correctAnswerShare;
+                    answerIdList.remove(0);
+                    if (answerIdList.isEmpty()) {
+                        return grade * 100.f;
+                    } else { // Get another answerId to check
+                        answerIdToCheck = answerIdList.get(0);
+                    }
+                } else {
+                    grade -= wrongAnswerShare;
+                    answerIdList.remove(0);
+                    if (answerIdList.isEmpty()) {
+                        return grade * 100.f;
+                    } else { // Get another answerId to check
+                        answerIdToCheck = answerIdList.get(0);
+                    }
+                }
+            }
+
+            answerIdToCheck--;
+        }
+
+        return grade * 100.f;
+    }
+
+    /**
      * Calculating grade for a question based on the given answers.
      * The approach is to look for the answer ids in the the
      * questions's list of answers and when a match is found, the
@@ -146,60 +214,19 @@ public class Question {
         if (this.type.equals("-type 'single'")) {
             Integer answerIdToCheck = answerIdList.get(0);
 
-            // Looking for the selected answer in the answers to the question.
-            while (iterator.hasNext()) {
-                Map.Entry<String, Boolean> entry = iterator.next();
-                if (answerIdToCheck == 1) {
-                    if (entry.getValue() == true) {
-                        answerIdList.remove(0);
-                        return 100.f;
-                    } else {
-                        answerIdList.remove(0);
-                        return -100.f;
-                    }
-                }
-                answerIdToCheck--;
-            }
-
-            return 0.f;
+            return CalculateGradeSingle(iterator, answerIdToCheck, answerIdList);
 
         } else if (this.type.equals("-type 'multiple'")) {
             /* For questions with multiple answers, every answer is checked and
             the grade is updated based on the correct/wrong answer shares. */
-            Float grade = 0.f;
             long nrCorectAnswers = this.answers.entrySet().stream().filter(a -> a.getValue() == true).count();
             long nrWrongAnswers = this.answers.entrySet().stream().filter(a -> a.getValue() == false).count();
             Float correctAnswerShare = Float.valueOf((1 / Float.valueOf(nrCorectAnswers)));
             Float wrongAnswerShare = Float.valueOf((1 / Float.valueOf(nrWrongAnswers)));
             Integer answerIdToCheck = answerIdList.get(0);
 
-            while (iterator.hasNext()) { // Looking for the selected answer in the answers to the question.
-                Map.Entry<String, Boolean> entry = iterator.next();
-                if (answerIdToCheck == 1) {
-                    if (entry.getValue() == true) {
-                        grade += correctAnswerShare;
-                        answerIdList.remove(0);
-                        if (answerIdList.isEmpty()) {
-                            return grade * 100.f;
-                        } else { // Get another answerId to check
-                            answerIdToCheck = answerIdList.get(0);
-                        }
-                    } else {
-                        grade -= wrongAnswerShare;
-                        answerIdList.remove(0);
-                        if (answerIdList.isEmpty()) {
-                            return grade * 100.f;
-                        } else { // Get another answerId to check
-                            answerIdToCheck = answerIdList.get(0);
-                        }
-                    }
-                }
-
-                answerIdToCheck--;
-            }
-
-            return grade * 100.f;
-
+            return CalculateGradeMultiple(answerIdList, iterator, answerIdToCheck,
+                                            correctAnswerShare, wrongAnswerShare);
         } else {
             throw new InvalidQuestionTypeException();
         }
