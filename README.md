@@ -2,9 +2,11 @@
 
         -> Simple survey generator. Users of this program will log into the application on any
            system call other than user creation. Users logged into the system will be able to:
-           create questions (with only one correct answer, or with several correct answers),
-           create quizzes based on previously added questions, and will be able to answer
-           others' quizzes, only once.
+           
+            >> create questions (with only one correct answer, or with several correct answers),
+           
+            >> create quizzes based on previously added questions, and will be able to answer
+               others' quizzes, only once.
 
 # Structure
 
@@ -12,7 +14,7 @@
            The most important of the commands are:
 
             >> Create Question: add a new question(with a single or multiple response type)
-            in the system visible to all users.
+               in the system visible to all users.
 
             >> Create Quiz: add a new questionnaire to the system using questions created by any user.
 
