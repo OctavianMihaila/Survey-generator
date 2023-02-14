@@ -18,58 +18,13 @@
 
         -> Parser class contains methods that perform the parse for every type of request.
      So, in those methods the checks for invalid input are done and confirmation messages
-     are created using an instance of JSONObject class. If there are no syntax errors
-     in the input which does not fit the conventions, then specific methods from
-     User/Question/Quiz are triggered in order to perform the requested actions.
+     are created using an instance of JSONObject class.
 
         -> JSONWriteRead class perform the work with the files (Database directory). I choosed to
         store all the questions in a file, the same for the quizzes and the users in individual files.
 
-            >> WriteJSON simply writes a JSONObject in a file if that file does not exist.
-
-            >> WriteWithAppend is creating a file with a given filename if that file does not exist and
-            writes the content. Otherwise it appends a question/quiz or more to the existing file.
-            This method can perform append for a given JSONArray if the first parameter is null.
-            Otherwise if we want to append just a JSONObject (a question), the last parameter
-            representing the JSONArray must be null.
-
-            >> MappingJSON is mapping questions/quizzes from JSON into Question/Quiz objects.
-            It is a generic method that returns a List<T>, where T can be a Question or a Quiz
-            based on the filename received from input.
-
         -> the process of completing a quiz is done by checking every answer from every question,
         based on the questions's type. After checking a question, subtracting the number of answers
-        the question had from the rest of answerIds (offset). This is done because every question
-        has its own answers list, with incremented identifiers, but from input a single incremental
-        identifier list is received.
-
-        -> Added a.gitignore file in Database directory because github is deleting empty directories.
+        the question had from the rest of answerIds (offset).
 
         -> More details about the implementation can be found in javadoc and comments inside methods.
-
-        -> Bonus:
-
-               >> What other corner cases would you treat in this application ?
-                    1. Adding a check for the case when all the provided answers have the same flag set
-                       (that means no correct answer exists (for both simple an multiple types)
-                        or all the answers are correct(only for the simple type)).
-
-                    2. For GetQuizDetailsByID request add errors for the cases when a quiz with the
-                       specified id cannot be found or there is no quiz.
-
-                    3. Checking if the same question is provided more than once for a create quiz request.
-
-               >> How would you refactor the commands and responses in the application ?
-                    1. Keep a record of users who have completed a quiz inside the quiz object. Concrete,
-                       return that list in every quiz getter(by id, by text, etc..). In this way is easier
-                       to throw errors about users who already completed a quiz, case when the user created
-                       that quiz, or to return the quizzes completed by a specific user.
-
-                    2. For the GetMySolutions request display the detailed results for every question. That
-                       means showing if an answer is right or wrong. Is a very useful feature for a user and
-                       can be implemented using a list of objects of type Question. That also involve creating
-                       some aditional methods to store this informations.
-
-                    3. Adding a feature to Delete quiz request so that certain questions can be deleted from
-                       the quiz. I find this useful for the user, in case that he wants to edit the quiz.
-                       The same can be done to add new questions to the quiz.
