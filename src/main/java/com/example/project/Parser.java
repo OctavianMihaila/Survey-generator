@@ -1,7 +1,6 @@
 package com.example.project;
 
 import java.io.File;
-import java.text.Normalizer;
 import java.util.*;
 import org.json.simple.JSONObject;
 public class Parser {
@@ -14,7 +13,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseCreateUser(String[] args) {
+    public static JSONObject parseCreateUser(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         // Checking if username and password are provided.
@@ -37,7 +36,7 @@ public class Parser {
         user.put("Password", password);
         user.put("CompletedQuizzes", new HashMap<String, WrapperQuizResult>());
 
-        if (JSONWriteRead.WriteJSON(user, username) == true) {
+        if (JSONWriteRead.writeJSON(user, username) == true) {
             confirmation.put("message", "'status' : 'error', 'message' : 'User already exists'");
         } else {
             confirmation.put("message", "'status' : 'ok', 'message' : 'User created successfully'");
@@ -51,13 +50,13 @@ public class Parser {
      * @param args
      * @return
      */
-    public static JSONObject ChecksForQuestionAnswersInput(Map<String, Boolean> answers, String args[]) {
+    public static JSONObject checksForQuestionAnswersInput(Map<String, Boolean> answers, String args[]) {
         JSONObject confirmation = new JSONObject();
         Integer count = 0; // Counts how many true answer are in a single-answer question.
 
         for (int i = 5; i < args.length; i += 2) {
             // Checking if same answer is provided multiple times.
-            if (Question.CheckAnswerExists(answers, args[i])) {
+            if (Question.checkAnswerExists(answers, args[i])) {
                 confirmation.put("message", "'status':'error','message':" +
                         "'Same answer provided more than once'");
                 return confirmation;
@@ -100,7 +99,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseCreateQuestion(String[] args) {
+    public static JSONObject parseCreateQuestion(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         // Checking if username and password are provided.
@@ -112,7 +111,7 @@ public class Parser {
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
         if (args.length < 4) {
-            if (User.Authentication(username, password) == false) { // Check if credentials are valid.
+            if (User.authentication(username, password) == false) { // Check if credentials are valid.
                 confirmation.put("message", "'status':'error','message':'Login failed'");
                 return confirmation;
             }
@@ -136,7 +135,7 @@ public class Parser {
         String type = args[4];
 
         if (!text.contains("-text")) {
-            if (User.Authentication(username, password) == false) { // Check if credentials are valid.
+            if (User.authentication(username, password) == false) { // Check if credentials are valid.
                 confirmation.put("message", "'status':'error','message':'Login failed'");
                 return confirmation;
             }
@@ -151,7 +150,7 @@ public class Parser {
 
         // Checks if the provided list of answers is valid.
         Map<String, Boolean> answers = new HashMap<String, Boolean>();
-        confirmation = ChecksForQuestionAnswersInput(answers, args);
+        confirmation = checksForQuestionAnswersInput(answers, args);
         if (confirmation.get("message") != null) {
             return confirmation;
         }
@@ -161,16 +160,16 @@ public class Parser {
         question.put("type", type);
         question.put("Answers", answers);
 
-        if (User.Authentication(username, password) == false) { // Check if credentials are valid.
+        if (User.authentication(username, password) == false) { // Check if credentials are valid.
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        if (Question.CheckAlreadyExists(text) == true) { // Check if question is present in Question.json.
+        if (Question.checkAlreadyExists(text) == true) { // Check if question is present in Question.json.
             confirmation.put("message", "'status':'error','message':'Question already exists'");
             return confirmation;
         }
 
-        JSONWriteRead.WriteWithAppend(question, "Questions", null);
+        JSONWriteRead.writeWithAppend(question, "Questions", null);
 
         confirmation.put("message", "'status' : 'ok', 'message' : 'Question added successfully'");
         return confirmation;
@@ -181,7 +180,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetQuestionIdByText(String[] args) {
+    public static JSONObject parseGetQuestionIdByText(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -191,7 +190,7 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
@@ -216,7 +215,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetAllQuestions(String[] args) {
+    public static JSONObject parseGetAllQuestions(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         // Checking if username and password are provided.
@@ -227,7 +226,7 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
@@ -253,7 +252,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseCreateQuiz(String[] args) {
+    public static JSONObject parseCreateQuiz(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -267,12 +266,12 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
         String text = args[3];
-        if (Quiz.CheckAlreadyExists(text) == true) { // Checking if quiz already exists.
+        if (Quiz.checkAlreadyExists(text) == true) { // Checking if quiz already exists.
             confirmation.put("message", "'status':'error','message':'Quizz name already exists'");
             return confirmation;
         }
@@ -283,7 +282,7 @@ public class Parser {
         int id = -1;
         for (int i = 4; i < args.length; i++) { // Checking if question id exists.
             id = args[i].charAt(args[i].lastIndexOf("'") - 1) - NUMBER_OFFSET;
-            if (questions != null && questions.get(0).CheckIdExists(questions, id)) {
+            if (questions != null && questions.get(0).checkIdExists(questions, id)) {
                 found = true;
             } else {
                 found = false;
@@ -311,7 +310,7 @@ public class Parser {
         quiz.put("quizName", quizName);
         quiz.put("quizCreator", username);
 
-        JSONWriteRead.WriteWithAppend(quiz, "Quizzes", null);
+        JSONWriteRead.writeWithAppend(quiz, "Quizzes", null);
         confirmation.put("message", "'status' : 'ok', 'message' : 'Quizz added succesfully'");
 
         return confirmation;
@@ -323,7 +322,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetQuizIdByName(String[] args) {
+    public static JSONObject parseGetQuizIdByName(String[] args) {
         JSONObject confirmation = new JSONObject();
 
 
@@ -334,7 +333,7 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
@@ -363,7 +362,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetAllQuizzes(String[] args) {
+    public static JSONObject parseGetAllQuizzes(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -373,7 +372,7 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
@@ -401,7 +400,7 @@ public class Parser {
      * @param id
      * @return
      */
-    public static JSONObject FindQuizWithSpecificId(List<Quiz> quizzes, Integer id) {
+    public static JSONObject findQuizWithSpecificId(List<Quiz> quizzes, Integer id) {
         JSONObject confirmation = new JSONObject();
         for (Quiz q: quizzes) {
             if (q.getId() == id) { // Look for the questions contained in the quiz (by Question ID).
@@ -416,7 +415,7 @@ public class Parser {
                 List<Integer> questionIDs = (List<Integer>) q.getQuestionsIDs();
                 for (int i = 0; i < questionIDs.size(); i++) { // Generate the required template.
                     Number idToCheck = questionIDs.get(i);
-                    Question question = questions.get(0).FindQuestionById(questions, idToCheck);
+                    Question question = questions.get(0).findQuestionById(questions, idToCheck);
 
                     // Building the answers string for every question, according to the required template.
                     Map<String, Boolean> answers = question.getAnswers();
@@ -461,7 +460,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetQuizDetailsByID(String[] args) {
+    public static JSONObject parseGetQuizDetailsByID(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -471,7 +470,7 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
@@ -479,7 +478,7 @@ public class Parser {
         Integer id =  args[3].charAt(args[3].lastIndexOf("'") - 1) - NUMBER_OFFSET;
         List<Quiz> quizzes = JSONWriteRead.MappingJSON("Quizzes");
 
-        confirmation = FindQuizWithSpecificId(quizzes, id);
+        confirmation = findQuizWithSpecificId(quizzes, id);
         if (confirmation.get("message") != null) {
             return confirmation;
         }
@@ -496,7 +495,7 @@ public class Parser {
      * @return
      */
 
-    public static JSONObject Submission(List<Quiz> quizzes, Integer quizToCompleteId, String[] args){
+    public static JSONObject submission(List<Quiz> quizzes, Integer quizToCompleteId, String[] args){
         JSONObject confirmation = new JSONObject();
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         Float grade = 0.f; // Stores the final result.
@@ -511,8 +510,8 @@ public class Parser {
                 }
 
                 // Check if the user already completed this quiz.
-                User user = JSONWriteRead.ReadUser(username);
-                if (user.CheckAlreadyCompleted(q.getName())) {
+                User user = JSONWriteRead.readUser(username);
+                if (user.checkAlreadyCompleted(q.getName())) {
                     confirmation.put("message", "'status':'error','message':'You already submitted this quizz'");
                     return confirmation;
                 }
@@ -528,7 +527,7 @@ public class Parser {
                 for (Question question: questions) { // Calculate score for every question.
                     Float answerResult = 0.f;
                     try {
-                        answerResult = question.AnswerTheQuestion(answerIdList);
+                        answerResult = question.answerTheQuestion(answerIdList);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -538,7 +537,7 @@ public class Parser {
                     question has its own answers list, with incremented identifiers,
                     but from input a single incremental identifier list is received. */
                     if (answerIdList.size() > 0) {
-                        Utils.UpdateOffset(answerIdList, question.getAnswers().size());
+                        Utils.updateOffset(answerIdList, question.getAnswers().size());
                     }
 
                     grade += answerResult;
@@ -555,14 +554,14 @@ public class Parser {
                 }
 
                 // Add quiz to the user's completedQuizzes map.
-                user.AddNewCompletedQuiz(q.getName(), new WrapperQuizResult(q.getId(),
+                user.addNewCompletedQuiz(q.getName(), new WrapperQuizResult(q.getId(),
                         Math.round(grade), user.getCompletedQuizzesLength() + 1));
 
                 // Update the user json file.
                 File oldUser = new File("src/Database/" + username + ".json");
                 oldUser.delete(); // Deleting the old user JSON.
-                JSONObject obj = user.ConvertUserToJSONObject();
-                JSONWriteRead.WriteJSON(obj, username);
+                JSONObject obj = user.convertUserToJSONObject();
+                JSONWriteRead.writeJSON(obj, username);
 
                 confirmation.put("message", "'status':'ok','message':'" + Math.round(grade) + " points'");
                 return confirmation;
@@ -579,7 +578,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation (with result).
      */
-    public static JSONObject ParseSubmitAnswers(String[] args) {
+    public static JSONObject parseSubmitAnswers(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -589,7 +588,7 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
@@ -606,7 +605,7 @@ public class Parser {
         Integer quizToCompleteId = Integer.parseInt(String.valueOf(args[3].
                 charAt(args[3].lastIndexOf(" ") + 2)));
 
-        confirmation = Submission(quizzes, quizToCompleteId, args);
+        confirmation = submission(quizzes, quizToCompleteId, args);
         if (confirmation.get("message") != null) {
             return confirmation;
         }
@@ -621,7 +620,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseDeleteQuiz(String[] args) {
+    public static JSONObject parseDeleteQuiz(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -632,7 +631,7 @@ public class Parser {
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
         if (args.length < 4) {
-            if (User.Authentication(username, password) == false) {
+            if (User.authentication(username, password) == false) {
                 confirmation.put("message", "'status':'error','message':'Login failed'");
                 return confirmation;
             }
@@ -640,13 +639,13 @@ public class Parser {
             return confirmation;
         }
 
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
 
         String text = args[3];
-        Boolean exist = Quiz.DeleteQuiz(text);
+        Boolean exist = Quiz.deleteQuiz(text);
         if (exist == true) {
             confirmation.put("message", "'status':'ok','message':'Quizz deleted successfully'");
             return confirmation;
@@ -662,7 +661,7 @@ public class Parser {
      * @param args
      * @return JSONObject that contains the text confirmation.
      */
-    public static JSONObject ParseGetMySolutions(String[] args) {
+    public static JSONObject parseGetMySolutions(String[] args) {
         JSONObject confirmation = new JSONObject();
 
         if (args.length < 3) { // Checking if username and password are provided.
@@ -672,11 +671,11 @@ public class Parser {
 
         String username = args[1].substring(args[1].lastIndexOf(" ") + 1);
         String password = args[2].substring(args[2].lastIndexOf(" ") + 1);
-        if (User.Authentication(username, password) == false) {
+        if (User.authentication(username, password) == false) {
             confirmation.put("message", "'status':'error','message':'Login failed'");
             return confirmation;
         }
-        User user = JSONWriteRead.ReadUser(username);
+        User user = JSONWriteRead.readUser(username);
         Map<String, WrapperQuizResult> completedQuizzes = user.getCompletedQuizzes();
         ArrayList<String> resultStrings = new ArrayList<>();
         Iterator<Map.Entry<String, WrapperQuizResult>> iterator =

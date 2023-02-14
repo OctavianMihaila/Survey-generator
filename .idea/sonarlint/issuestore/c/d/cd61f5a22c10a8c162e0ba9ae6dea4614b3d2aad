@@ -1,0 +1,20 @@
+
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÇÑé
+c	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢Æ¶¥
+J
+java:S1481-"4Remove this unused "FilenameToCheck" local variable.(¤ÇÑé
+Z
+java:S21478"DCombine this catch with the one at line 54, which has the same body.(ï­£Ä
+f
+java:S2147:"DCombine this catch with the one at line 54, which has the same body.(âÃƒŠıÿÿÿÿ8Â˜îÇİ0
+W
+java:S1126>"AReplace this if-then-else statement by a single return statement.(é÷õ¶
+c	java:S100L"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†—ï
+b	java:S100U"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô£+
+V
+java:S1126V"AReplace this if-then-else statement by a single return statement.(…©ÓB
+c	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì’¶±
+?
+java:S1068")Remove this unused "grade" private field.(¸Øˆ
+R
+java:S1068"7Remove this unused "nrQuestionsAnswered" private field.(šü™Éúÿÿÿÿ

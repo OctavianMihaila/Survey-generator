@@ -1,0 +1,137 @@
+
+|
+java:S2293™"YReplace the type specification in this constructor call with the diamond operator ("<>").(šó—–ûÿÿÿÿ8üö°Åİ0
+}
+java:S1192Ì"_Define a constant instead of duplicating this literal "'status' : 'ok', 'message' : '" 3 times.(°…œß8Ì÷°Åİ0
+e
+java:S1192º"HDefine a constant instead of duplicating this literal "Quizzes" 5 times.(ŒÅ³x8Î÷°Åİ0
+m
+java:S1192­"JDefine a constant instead of duplicating this literal "Questions" 6 times.(úìíŸøÿÿÿÿ8Ö÷°Åİ0
+˜
+java:S1192l"{Define a constant instead of duplicating this literal "'status':'error','message':'You need to be authenticated'" 10 times.(¾É8Ù÷°Åİ0
+~
+java:S1192="\Define a constant instead of duplicating this literal "'status':'error','message':" 4 times.(ñ«ùüÿÿÿÿ8ä÷°Åİ0
+ˆ
+java:S1192t"kDefine a constant instead of duplicating this literal "'status':'error','message':'Login failed'" 13 times.(ùÚÄ8æ÷°Åİ0
+k
+java:S1192"IDefine a constant instead of duplicating this literal "message" 66 times.(…ÛÁÚÿÿÿÿÿ8ÿ÷°Åİ0
+
+java:S1192Û"oDefine a constant instead of duplicating this literal "'status':'error','message':'No quiz was found'" 3 times.(Ú¸Á—8€ø°Åİ0
+L
+java:S5411<"*Use the primitive boolean expression here.(¯âè—úÿÿÿÿ8˜ø°Åİ0
+G
+java:S5411s"*Use the primitive boolean expression here.(„ğúÙ8›ø°Åİ0
+H
+java:S5411‹"*Use the primitive boolean expression here.(„ğúÙ8œø°Åİ0
+H
+java:S5411¤"*Use the primitive boolean expression here.(„ğúÙ8œø°Åİ0
+H
+java:S5411¨"*Use the primitive boolean expression here.(ŞòÜ¹8ø°Åİ0
+H
+java:S5411Â"*Use the primitive boolean expression here.(‰àè´8 ø°Åİ0
+H
+java:S5411æ"*Use the primitive boolean expression here.(‰àè´8¡ø°Åİ0
+H
+java:S5411"*Use the primitive boolean expression here.(‰àè´8¦ø°Åİ0
+H
+java:S5411“"*Use the primitive boolean expression here.(Š©š¿8¯ø°Åİ0
+H
+java:S5411¦"*Use the primitive boolean expression here.(ÔĞÖÖ8¼ø°Åİ0
+H
+java:S5411Ñ"*Use the primitive boolean expression here.(‰àè´8¾ø°Åİ0
+H
+java:S5411ø"*Use the primitive boolean expression here.(‰àè´8¿ø°Åİ0
+H
+java:S5411Ú"*Use the primitive boolean expression here.(‰àè´8Àø°Åİ0
+M
+java:S5411ƒ"*Use the primitive boolean expression here.(à†ö¡øÿÿÿÿ8Áø°Åİ0
+H
+java:S5411Ğ"*Use the primitive boolean expression here.(‰àè´8Âø°Åİ0
+H
+java:S5411û"*Use the primitive boolean expression here.(‰àè´8Ãø°Åİ0
+H
+java:S5411ƒ"*Use the primitive boolean expression here.(‰àè´8Ãø°Åİ0
+M
+java:S5411Š"*Use the primitive boolean expression here.(Öù’æüÿÿÿÿ8Çø°Åİ0
+H
+java:S5411£"*Use the primitive boolean expression here.(‰àè´8Èø°Åİ0
+h
+java:S2259ã"JA "NullPointerException" could be thrown; "confirmation" is nullable here.(„Áî”8‰ÂµÅİ0
+\
+java:S1118":Add a private constructor to hide the implicit public one.(ãòÙÂøÿÿÿÿ8¥ÂµÅİ0
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó¤àˆıÿÿÿÿ8ÀÂµÅİ0
+I
+java:S1125("'Remove the unnecessary boolean literal.(ŸáŞøÿÿÿÿ8ŒÃµÅİ0
+j	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÃÉ8“ÃµÅİ0
+G
+java:S11976"*Move the array designators [] to the type.(ÿÃÉ8½ÃµÅİ0
+E
+java:S1125["(Remove the unnecessary boolean literals.(ÅîãĞ8¬ÅµÅİ0
+j	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õù‚8ÖÅµÅİ0
+D
+java:S1125s"'Remove the unnecessary boolean literal.(„ğúÙ8ÆµÅİ0
+E
+java:S1125‹"'Remove the unnecessary boolean literal.(„ğúÙ8°ÆµÅİ0
+E
+java:S1125¤"'Remove the unnecessary boolean literal.(„ğúÙ8ÂÆµÅİ0
+E
+java:S1125¨"'Remove the unnecessary boolean literal.(ŞòÜ¹8ÉÆµÅİ0
+p	java:S100¸"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×¢—úúÿÿÿÿ8ÇµÅİ0
+E
+java:S1125Â"'Remove the unnecessary boolean literal.(‰àè´8³ÇµÅİ0
+p	java:S100Û"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ä¤Äâşÿÿÿÿ8ºÇµÅİ0
+E
+java:S1125æ"'Remove the unnecessary boolean literal.(‰àè´8ÁÇµÅİ0
+k	java:S100€"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÊ¿®8ÍÇµÅİ0
+E
+java:S1125"'Remove the unnecessary boolean literal.(‰àè´8ÜÇµÅİ0
+E
+java:S1125“"'Remove the unnecessary boolean literal.(Š©š¿8ŞÇµÅİ0
+E
+java:S1125¦"'Remove the unnecessary boolean literal.(ÔĞÖÖ8ñÇµÅİ0
+k	java:S100Æ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©Æ§·8ƒÈµÅİ0
+E
+java:S1125Ñ"'Remove the unnecessary boolean literal.(‰àè´8‰ÈµÅİ0
+^	java:S125İ"<This block of commented-out lines of code should be removed.(Ø»õ³üÿÿÿÿ8‹ÈµÅİ0
+k	java:S100î"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½µ”8ÈµÅİ0
+E
+java:S1125ø"'Remove the unnecessary boolean literal.(‰àè´8“ÈµÅİ0
+p	java:S100”"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¾½üÿÿÿÿ8ÈµÅİ0
+u
+java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ã¾½üÿÿÿÿ8¤ÈµÅİ0
+U	java:S106š"9Replace this use of System.out or System.err by a logger.(€â›28­ÈµÅİ0
+B
+java:S1168›"$Return an empty map instead of null.(¥¹ï8Ä†îÇİ0
+X	java:S125Ÿ"<This block of commented-out lines of code should be removed.(ÏÒŸ8±ÈµÅİ0
+E
+java:S1905 "'Remove this unnecessary cast to "List".(âÎ¬À8³ÈµÅİ0
+B
+java:S1168Ç"$Return an empty map instead of null.(¥¹ï8ö†îÇİ0
+p	java:S100Ğ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¸Ñşúÿÿÿÿ8ÅÈµÅİ0
+E
+java:S1125Ú"'Remove the unnecessary boolean literal.(‰àè´8ÏÈµÅİ0
+k	java:S100ó"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶Å×‰8ÖÈµÅİ0
+p
+java:S3776ó"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(¶Å×‰8×ÈµÅİ0
+a
+java:S1155œ">Use isEmpty() to check whether the collection is empty or not.(­ÍØßşÿÿÿÿ8ñÈµÅİ0
+\
+java:S1155¨">Use isEmpty() to check whether the collection is empty or not.(«Å£ú8ôÈµÅİ0
+]	java:S899³";Do something with the "boolean" value returned by "delete".(›Ÿ˜İûÿÿÿÿ8ÉµÅİ0
+q
+java:S4042³"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(›Ÿ˜İûÿÿÿÿ8ÉµÅİ0
+k	java:S100Æ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù«Ø‚8’ÉµÅİ0
+E
+java:S1125Ğ"'Remove the unnecessary boolean literal.(‰àè´8®ÉµÅİ0
+p	java:S100ğ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨É«óùÿÿÿÿ8·ÉµÅİ0
+E
+java:S1125û"'Remove the unnecessary boolean literal.(‰àè´8ÁÉµÅİ0
+E
+java:S1125ƒ"'Remove the unnecessary boolean literal.(‰àè´8ËÉµÅİ0
+J
+java:S1125Š"'Remove the unnecessary boolean literal.(Öù’æüÿÿÿÿ8ÏÉµÅİ0
+p	java:S100™"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ©·Åúÿÿÿÿ8ÒÉµÅİ0
+E
+java:S1125£"'Remove the unnecessary boolean literal.(‰àè´8ÖÉµÅİ0
+S
+java:S1128"1Remove this unused import 'java.text.Normalizer'.(‡âÌ€øÿÿÿÿ8ÀˆîÇİ0

@@ -17,47 +17,47 @@ public class Tema1 {
 
 		switch (request) {
 			case "-create-user":
-				confirmation = Parser.ParseCreateUser(args);
+				confirmation = Parser.parseCreateUser(args);
 				break;
 
 			case "-create-question":
-				confirmation = Parser.ParseCreateQuestion(args);
+				confirmation = Parser.parseCreateQuestion(args);
 				break;
 
 			case "-get-question-id-by-text":
-				confirmation = Parser.ParseGetQuestionIdByText(args);
+				confirmation = Parser.parseGetQuestionIdByText(args);
 				break;
 
 			case "-get-all-questions":
-				confirmation = Parser.ParseGetAllQuestions(args);
+				confirmation = Parser.parseGetAllQuestions(args);
 				break;
 
 			case "-create-quizz":
-				confirmation = Parser.ParseCreateQuiz(args);
+				confirmation = Parser.parseCreateQuiz(args);
 				break;
 
 			case "-get-quizz-by-name":
-				confirmation = Parser.ParseGetQuizIdByName(args);
+				confirmation = Parser.parseGetQuizIdByName(args);
 				break;
 
 			case "-get-all-quizzes":
-				confirmation = Parser.ParseGetAllQuizzes(args);
+				confirmation = Parser.parseGetAllQuizzes(args);
 				break;
 
 			case "-get-quizz-details-by-id":
-				confirmation = Parser.ParseGetQuizDetailsByID(args);
+				confirmation = Parser.parseGetQuizDetailsByID(args);
 				break;
 
 			case "-submit-quizz":
-				confirmation = Parser.ParseSubmitAnswers(args);
+				confirmation = Parser.parseSubmitAnswers(args);
 				break;
 
 			case "-delete-quizz-by-id":
-				confirmation = Parser.ParseDeleteQuiz(args);
+				confirmation = Parser.parseDeleteQuiz(args);
 				break;
 
 			case "-get-my-solutions":
-				confirmation = Parser.ParseGetMySolutions(args);
+				confirmation = Parser.parseGetMySolutions(args);
 				break;
 
 			case "-cleanup-all":

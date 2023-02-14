@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,11 +18,6 @@ public class User {
     private String password;
 
     private Map<String, WrapperQuizResult> completedQuizzes;
-
-    private Float grade;
-
-    // Stores the number of answered questions for the current quiz.
-    private Integer nrQuestionsAnswered;
 
     public User(String username, String password, Map<String, WrapperQuizResult> completedQuizzes) {
         this.username = username;
@@ -39,10 +33,9 @@ public class User {
         return this.completedQuizzes.size();
     }
 
-    public static Boolean Authentication(String username, String password) {
+    public static Boolean authentication(String username, String password) {
 
         String filePath = "src/Database/" + username + ".json";
-        File FilenameToCheck = new File(filePath);
         JSONParser jsonParser = new JSONParser();
         JSONObject user = null;
 
@@ -73,7 +66,7 @@ public class User {
      * Add a quiz name to the completed quizzes arraylist.
      * @param quizName
      */
-    public void AddNewCompletedQuiz(String quizName, WrapperQuizResult quizResult) {
+    public void addNewCompletedQuiz(String quizName, WrapperQuizResult quizResult) {
         this.completedQuizzes.put(quizName, quizResult);
     }
 
@@ -82,7 +75,7 @@ public class User {
      * @param quizName
      * @return
      */
-    public Boolean CheckAlreadyCompleted(String quizName) {
+    public Boolean checkAlreadyCompleted(String quizName) {
         if (this.completedQuizzes.containsKey(quizName)) {
             return true;
         }
@@ -94,7 +87,7 @@ public class User {
      * Converting a user to a JSONObject.
      * @return
      */
-    public JSONObject ConvertUserToJSONObject() {
+    public JSONObject convertUserToJSONObject() {
         JSONObject obj = new JSONObject();
         obj.put("User", this.username);
         obj.put("Password", this.password);

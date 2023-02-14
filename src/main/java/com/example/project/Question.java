@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,11 +42,11 @@ public class Question {
         this.answers = answers;
     }
 
-    public static Boolean CheckAlreadyExists(String text) {
+    public static Boolean checkAlreadyExists(String text) {
         String filePath = "src/Database/Questions.json";
         JSONParser jsonParser = new JSONParser();
         JSONArray objArray = null;
-        File FilenameToCheck = new File(filePath);
+
         if (!Files.exists(Paths.get(filePath))) {
             return false;
         }
@@ -78,7 +77,7 @@ public class Question {
      * @param id
      * @return
      */
-    public Boolean CheckIdExists(List<Question> questions, Integer id) {
+    public Boolean checkIdExists(List<Question> questions, Integer id) {
         for (Question q: questions) {
             if (q.getId() == id) {
                 return true;
@@ -94,7 +93,7 @@ public class Question {
      * @param id
      * @return
      */
-    public Question FindQuestionById(List<Question> questions, Number id) {
+    public Question findQuestionById(List<Question> questions, Number id) {
         for (Question q: questions) {
             if (id.intValue() == q.getId()) {
                 return q;
@@ -110,8 +109,9 @@ public class Question {
      * @param newAnswer
      * @return
      */
-    public static Boolean CheckAnswerExists(Map<String, Boolean> answers, String newAnswer) {
+    public static Boolean checkAnswerExists(Map<String, Boolean> answers, String newAnswer) {
         Iterator<Map.Entry<String, Boolean>> iterator = answers.entrySet().iterator();
+
         while (iterator.hasNext()) {
             Map.Entry<String, Boolean> entry = iterator.next();
             if (entry.getKey().substring(entry.getKey().lastIndexOf(" ") + 2).
@@ -130,10 +130,11 @@ public class Question {
      * @param answerIdList
      * @return
      */
-    public Float CalculateGradeSingle(Iterator<Map.Entry<String, Boolean>> iterator,
+    public Float calculateGradeSingle(Iterator<Map.Entry<String, Boolean>> iterator,
                                       Integer answerIdToCheck, ArrayList<Integer> answerIdList) {
         while (iterator.hasNext()) {
             Map.Entry<String, Boolean> entry = iterator.next();
+
             if (answerIdToCheck == 1) {
                 if (entry.getValue() == true) {
                     answerIdList.remove(0);
@@ -158,7 +159,7 @@ public class Question {
      * @param wrongAnswerShare
      * @return
      */
-    public Float CalculateGradeMultiple(ArrayList<Integer> answerIdList, Iterator<Map.Entry<String,
+    public Float calculateGradeMultiple(ArrayList<Integer> answerIdList, Iterator<Map.Entry<String,
                                         Boolean>> iterator, Integer answerIdToCheck,
                                         Float correctAnswerShare, Float wrongAnswerShare) {
         Float grade = 0.f;
@@ -205,16 +206,16 @@ public class Question {
      * @param answerIdList
      * @return
      */
-    public Float AnswerTheQuestion(ArrayList<Integer> answerIdList) throws InvalidQuestionTypeException {
+    public Float answerTheQuestion(ArrayList<Integer> answerIdList) throws InvalidQuestionTypeException {
         /* Map converted to TreeMap to reverse the order of the
         answers and obtain the initial order given at the input */
         Iterator<Map.Entry<String, Boolean>> iterator = Utils.
-                ConvertMapToTreeMap(this.answers).entrySet().iterator();
+                convertMapToTreeMap(this.answers).entrySet().iterator();
 
         if (this.type.equals("-type 'single'")) {
             Integer answerIdToCheck = answerIdList.get(0);
 
-            return CalculateGradeSingle(iterator, answerIdToCheck, answerIdList);
+            return calculateGradeSingle(iterator, answerIdToCheck, answerIdList);
 
         } else if (this.type.equals("-type 'multiple'")) {
             /* For questions with multiple answers, every answer is checked and
@@ -225,7 +226,7 @@ public class Question {
             Float wrongAnswerShare = Float.valueOf((1 / Float.valueOf(nrWrongAnswers)));
             Integer answerIdToCheck = answerIdList.get(0);
 
-            return CalculateGradeMultiple(answerIdList, iterator, answerIdToCheck,
+            return calculateGradeMultiple(answerIdList, iterator, answerIdToCheck,
                                             correctAnswerShare, wrongAnswerShare);
         } else {
             throw new InvalidQuestionTypeException();

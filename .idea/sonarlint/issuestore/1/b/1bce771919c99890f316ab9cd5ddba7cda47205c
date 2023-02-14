@@ -1,0 +1,41 @@
+
+ƒ
+java:S1319†"lThe type of "answerIdList" should be an interface such as "List" rather than the implementation "ArrayList".(ìğò˜
+ƒ
+java:S1319¡"lThe type of "answerIdList" should be an interface such as "List" rather than the implementation "ArrayList".(æÎÿú
+ˆ
+java:S1319Ğ"lThe type of "answerIdList" should be an interface such as "List" rather than the implementation "ArrayList".(á©µ’øÿÿÿÿ
+f	java:S1172"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÇÑé
+A
+java:S5411Š"*Use the primitive boolean expression here.(ß‡èõ
+A
+java:S5411©"*Use the primitive boolean expression here.(ß‡èõ
+c
+java:S1223ë"LRename this method to prevent any misunderstanding or make it a constructor.(‡ÕÛÄ
+\
+java:S2259B"FA "NullPointerException" could be thrown; "objArray" is nullable here.(Ô„êé
+h	java:S100."NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò·ôßıÿÿÿÿ
+J
+java:S14812"4Remove this unused "FilenameToCheck" local variable.(¤ÇÑé
+Z
+java:S2147<"DCombine this catch with the one at line 58, which has the same body.(ï­£Ä
+f
+java:S2147>"DCombine this catch with the one at line 58, which has the same body.(âÃƒŠıÿÿÿÿ8õ–îÇİ0
+h	java:S100Q"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ù¸ûÿÿÿÿ
+h	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯¹”üùÿÿÿÿ
+c	java:S100q"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Êò¥¸
+c	java:S100…"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞôßA
+>
+java:S1125Š"'Remove the unnecessary boolean literal.(ß‡èõ
+d	java:S100¡"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æÎÿú
+i
+java:S3776¡"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(æÎÿú
+>
+java:S1125©"'Remove the unnecessary boolean literal.(ß‡èõ
+i	java:S100Ğ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á©µ’øÿÿÿÿ
+C
+java:S1125Ş"'Remove the unnecessary boolean literal.(´­ñÛûÿÿÿÿ
+C
+java:S1125ß"'Remove the unnecessary boolean literal.(ƒÒ²şÿÿÿÿ
+d	java:S100ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÕÛÄ
+T	java:S106ì"9Replace this use of System.out or System.err by a logger.(ô½—‘ÿÿÿÿÿ

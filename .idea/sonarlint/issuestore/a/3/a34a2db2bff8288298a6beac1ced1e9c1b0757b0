@@ -1,0 +1,43 @@
+
+o
+java:S2293k"YReplace the type specification in this constructor call with the diamond operator ("<>").(¸ ±â
+a
+java:S1192"FDefine a constant instead of duplicating this literal ".json" 6 times.(…ïƒÿÿÿÿÿÿ
+i
+java:S1192"NDefine a constant instead of duplicating this literal "src/Database/" 6 times.(…ïƒÿÿÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÇÑé
+k	java:S1174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñÓğ®şÿÿÿÿ
+f	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÇÑé
+f	java:S117g"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÇÑé
+g	java:S117¦"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÇÑé
+\
+java:S2259V"FA "NullPointerException" could be thrown; "objArray" is nullable here.(«ğÒì
+P
+java:S1118":Add a private constructor to hide the implicit public one.(–µ—‡
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®¿ìÎ
+h	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñÓğ®şÿÿÿÿ
+1
+java:S3626\"Remove this redundant jump.(ûÁİ…
+Z
+java:S2147J"DCombine this catch with the one at line 72, which has the same body.(ï­£Ä
+f
+java:S2147L"DCombine this catch with the one at line 72, which has the same body.(âÃƒŠıÿÿÿÿ8ŒîÇİ0
+h	java:S100e"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥¶•Àüÿÿÿÿ
+m
+java:S3776e"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¥¶•Àüÿÿÿÿ
+g
+java:S2147w"ECombine this catch with the one at line 117, which has the same body.(âÃƒŠıÿÿÿÿ8îÇİ0
+S	java:S106s"9Replace this use of System.out or System.err by a logger.(å»ÈÂùÿÿÿÿ
+M	java:S106|"9Replace this use of System.out or System.err by a logger.(š¿‰
+A
+java:S1168}"+Return an empty collection instead of null.(¥¹ï
+B
+java:S1168€"+Return an empty collection instead of null.(¥¹ï
+N	java:S106š"9Replace this use of System.out or System.err by a logger.(Ñ…ğ3
+B
+java:S1168›"+Return an empty collection instead of null.(¥¹ï
+i	java:S100¤"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ÕÃ•şÿÿÿÿ
+h
+java:S2147´"ECombine this catch with the one at line 178, which has the same body.(âÃƒŠıÿÿÿÿ8¹îÇİ0
+T	java:S106°"9Replace this use of System.out or System.err by a logger.(å»ÈÂùÿÿÿÿ
+T	java:S106º"9Replace this use of System.out or System.err by a logger.(óÅ”ˆúÿÿÿÿ

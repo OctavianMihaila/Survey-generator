@@ -60,11 +60,11 @@ public class Quiz {
      * @param text
      * @return
      */
-    public static Boolean CheckAlreadyExists(String text) {
+    public static Boolean checkAlreadyExists(String text) {
         String filePath = "src/Database/Quizzes.json";
         JSONParser jsonParser = new JSONParser();
         JSONArray objArray = null;
-        File FilenameToCheck = new File(filePath);
+
         if (!Files.exists(Paths.get(filePath))) {
             return false;
         }
@@ -99,7 +99,7 @@ public class Quiz {
      * @param ID
      * @return
      */
-    public static Boolean DeleteFromJSON(JSONArray objArray, String ID) {
+    public static Boolean deleteFromJSON(JSONArray objArray, String ID) {
         countIDs = 1;
         for (int i = 0; i < objArray.size(); i++) {
             JSONObject obj = (JSONObject)objArray.get(i);
@@ -111,7 +111,7 @@ public class Quiz {
 
             if (quiz.getId() == (ID.charAt(ID.lastIndexOf("'") - 1) - NUMBER_OFFSET)) {
                 objArray.remove(obj);
-                JSONWriteRead.WriteWithAppend(null, "Quizzes", objArray);
+                JSONWriteRead.writeWithAppend(null, "Quizzes", objArray);
                 return true;
             }
         }
@@ -124,11 +124,11 @@ public class Quiz {
      * @param ID
      * @return
      */
-    public static Boolean DeleteQuiz(String ID) {
+    public static Boolean deleteQuiz(String ID) {
         String filePath = "src/Database/Quizzes.json";
         JSONParser jsonParser = new JSONParser();
         JSONArray objArray = null;
-        File FilenameToCheck = new File(filePath);
+
         if (!Files.exists(Paths.get(filePath))) {
             return false;
         }
@@ -148,7 +148,7 @@ public class Quiz {
         }
 
         // Mapping from JSON to Quiz objects and deleting a quiz with a specific ID.
-        if (Quiz.DeleteFromJSON(objArray, ID)) {
+        if (Quiz.deleteFromJSON(objArray, ID)) {
             return true;
         } else {
             return false;

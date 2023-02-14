@@ -1,0 +1,6 @@
+
+€
+java:S4165A"jRemove this useless assignment; "confirmation" already holds the assigned value along all execution paths.(’””«
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¾ıâÒ
+S	java:S106E"9Replace this use of System.out or System.err by a logger.(Ïòôüÿÿÿÿ
+S	java:S106I"9Replace this use of System.out or System.err by a logger.(ıò÷×ÿÿÿÿÿ

@@ -11,7 +11,7 @@ public class Utils {
      * @param answers
      * @return
      */
-    public static TreeMap<String, Boolean> ConvertMapToTreeMap(Map<String, Boolean> answers ) {
+    public static TreeMap<String, Boolean> convertMapToTreeMap(Map<String, Boolean> answers ) {
         Iterator<Map.Entry<String, Boolean>> iterator = answers.entrySet().iterator();
         TreeMap<String, Boolean> treeMap = new TreeMap<>();
 
@@ -28,7 +28,7 @@ public class Utils {
      * @param answerIdList
      * @param offset
      */
-    public static void UpdateOffset(ArrayList<Integer> answerIdList, Integer offset) {
+    public static void updateOffset(ArrayList<Integer> answerIdList, Integer offset) {
         for (int i = 0; i < answerIdList.size(); i++) {
             answerIdList.set(i, answerIdList.get(i) - offset);
         }

@@ -9,23 +9,25 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JSONWriteRead {
     /**
      * Creating a file with a given filename if that file does
      * not exist and writing a JSONObject in it.
-     * @param obj JSONObject to be written in file
+     *
+     * @param obj      JSONObject to be written in file
      * @param filename
      * @return returns true if a file with the given filename already exists and false otherwise.
      */
-    public static boolean WriteJSON(JSONObject obj, String filename) {
+    public static boolean writeJSON(JSONObject obj, String filename) {
         String filePath = "src/Database/" + filename + ".json";
 
-        File FilenameToCheck = new File(filePath);
-        if (FilenameToCheck.exists()) {
+        File filenameToCheck = new File(filePath);
+        if (filenameToCheck.exists()) {
             return true;
         }
 
@@ -45,27 +47,28 @@ public class JSONWriteRead {
     /**
      * Creating a file with a given filename if that file does
      * not exist. Otherwise append a new question to the existing file.
+     *
      * @param obj
      * @param filename
      * @return
      */
-    public static void WriteWithAppend(JSONObject obj, String filename, JSONArray ObjArr) {
+    public static void writeWithAppend(JSONObject obj, String filename, JSONArray objArr) {
         Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
         String filePath = "src/Database/" + filename + ".json";
-        File FilenameToCheck = new File(filePath);
+        File filenameToCheck = new File(filePath);
         JSONParser jsonParser = new JSONParser();
         JSONArray objArray = null;
 
-        if (FilenameToCheck.exists()) {
+        if (filenameToCheck.exists()) {
             // Appending new object to existing json file
             try (FileReader reader = new FileReader(filePath)) {
                 Object object = jsonParser.parse(reader);
 
-                if (ObjArr == null) {
+                if (objArr == null) {
                     objArray = (JSONArray) object;
                     objArray.add(obj);
                 } else {
-                    objArray = ObjArr;
+                    objArray = objArr;
 
                 }
 
@@ -89,24 +92,24 @@ public class JSONWriteRead {
             e.printStackTrace();
         }
 
-        return;
     }
 
     /**
      * Mapping questions/quizzes from JSON into Question/Quiz objects.
+     *
      * @param filename specifies what type of objects to create.
-     * @return List of Quizzes/Questions.
      * @param <T>
+     * @return List of Quizzes/Questions.
      */
     public static <T> List<T> MappingJSON(String filename) {
         String filePath = "src/Database/" + filename + ".json";
-        File FilenameToCheck = new File(filePath);
+        File filenameToCheck = new File(filePath);
         JSONParser jsonParser = new JSONParser();
         JSONArray objArray = null;
         int counterIDs = 1;
         List<T> items = new ArrayList<T>();
 
-        if (FilenameToCheck.exists()) {
+        if (filenameToCheck.exists()) {
             try (FileReader reader = new FileReader(filePath)) {
                 Object object = jsonParser.parse(reader);
                 objArray = (JSONArray) object;
@@ -131,9 +134,9 @@ public class JSONWriteRead {
         if (filename.equals("Questions")) {
             for (int i = 0; i < objArray.size(); i++) {
                 JSONObject obj = (JSONObject) objArray.get(i);
-                Question question = new Question(counterIDs, (String)obj.get("text"),
-                        (String)obj.get("type"), (Map<String, Boolean>)obj.get("Answers"));
-                items.add((T)question);
+                Question question = new Question(counterIDs, (String) obj.get("text"),
+                        (String) obj.get("type"), (Map<String, Boolean>) obj.get("Answers"));
+                items.add((T) question);
                 counterIDs++;
             }
 
@@ -141,11 +144,11 @@ public class JSONWriteRead {
         } else if (filename.equals("Quizzes")) {
             for (int i = 0; i < objArray.size(); i++) {
                 JSONObject obj = (JSONObject) objArray.get(i);
-                Quiz quiz = new Quiz(counterIDs, (String)obj.get("quizName"),
-                        (ArrayList<Integer>)obj.get("questionsIDs"),
-                        Boolean.parseBoolean((String)obj.get("is_completed")),
-                        (String)obj.get("quizCreator"));
-                items.add((T)quiz);
+                Quiz quiz = new Quiz(counterIDs, (String) obj.get("quizName"),
+                        (ArrayList<Integer>) obj.get("questionsIDs"),
+                        Boolean.parseBoolean((String) obj.get("is_completed")),
+                        (String) obj.get("quizCreator"));
+                items.add((T) quiz);
                 counterIDs++;
             }
 
@@ -158,16 +161,17 @@ public class JSONWriteRead {
 
     /**
      * Mapping a json file that represents a user into a User object.
+     *
      * @param filename
      * @return
      */
-    public static User ReadUser(String filename) {
+    public static User readUser(String filename) {
         String filePath = "src/Database/" + filename + ".json";
-        File FilenameToCheck = new File(filePath);
+        File filenameToCheck = new File(filePath);
         JSONParser jsonParser = new JSONParser();
         JSONObject obj = null;
 
-        if (FilenameToCheck.exists()) {
+        if (filenameToCheck.exists()) {
             try (FileReader reader = new FileReader(filePath)) {
                 Object object = jsonParser.parse(reader);
                 obj = (JSONObject) object;
@@ -188,16 +192,16 @@ public class JSONWriteRead {
         }
 
         Map<String, WrapperQuizResult> completedQuizzes = new HashMap<>();
-        JSONArray results = (JSONArray)obj.get("WrapperQuizResult");
+        JSONArray results = (JSONArray) obj.get("WrapperQuizResult");
         if (results != null) {
             for (int i = 0; i < results.size(); i++) {
-                JSONObject o = ((JSONObject)results.get(i));
-                WrapperQuizResult quizResult = new WrapperQuizResult((Number)o.get("QuizId"),
-                        (Number)o.get("Score"), (Number)o.get("IndexInList"));
-                completedQuizzes.put((String)o.get("QuizName"), quizResult);
+                JSONObject o = ((JSONObject) results.get(i));
+                WrapperQuizResult quizResult = new WrapperQuizResult((Number) o.get("QuizId"),
+                        (Number) o.get("Score"), (Number) o.get("IndexInList"));
+                completedQuizzes.put((String) o.get("QuizName"), quizResult);
             }
         }
 
-        return new User((String)obj.get("User"), (String)obj.get("Password"), completedQuizzes);
+        return new User((String) obj.get("User"), (String) obj.get("Password"), completedQuizzes);
     }
 }
