@@ -24,7 +24,7 @@
 
             >> Return my answers: Returns a detailed statistics containing the results of completed quizzes.
 
-# Implementation:
+# Implementation
 
         -> Parser class contains methods that perform the parse for every type of request.
            So, in those methods the checks for invalid input are done and confirmation messages
