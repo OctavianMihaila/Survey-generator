@@ -1,40 +1,47 @@
-# Description
+# Survey Generator
 
-        -> Simple survey generator. Users of this program will log into the application on any
-           system call other than user creation. Users logged into the system will be able to:
-           
-            >> create questions (with only one correct answer, or with several correct answers),
-           
-            >> create quizzes based on previously added questions, and will be able to answer
-               others' quizzes, only once.
+A simple survey generator application that allows users to create and manage quizzes with single or multiple correct answers. Users can also answer quizzes created by others.
 
-# Structure
+## Table of Contents
 
-        -> The quizzes generator allows the user to create and manage quizzes using some commands.
-           The most important of the commands are:
+- [Description](#description)
+- [Structure](#structure)
+- [Implementation](#implementation)
 
-            >> Create Question: add a new question(with a single or multiple response type)
-               in the system visible to all users.
+## Description
 
-            >> Create Quiz: add a new questionnaire to the system using questions created by any user.
+The Survey Generator is an application that enables users to create, manage, and answer quizzes. Users can log into the application and perform various actions, including:
 
-            >> Delete Quiz: Removes a own quiz from the system.
+- Create questions with single or multiple correct answers.
+- Create quizzes based on the questions added by any user.
+- Answer quizzes created by other users (only once).
 
-            >> Submit Quiz: Answer to a quiz from the system, regardless of which other user created it.
+## Structure
 
-            >> Return my answers: Returns a detailed statistics containing the results of completed quizzes.
+The application provides several commands to manage quizzes and questions. The most important commands include:
 
-# Implementation
+- **Create Question:** Users can add new questions with single or multiple response types to the system, making them visible to all users.
 
-        -> Parser class contains methods that perform the parse for every type of request.
-           So, in those methods the checks for invalid input are done and confirmation messages
-           are created using an instance of JSONObject class.
+- **Create Quiz:** Users can add new questionnaires to the system, using questions created by any user.
 
-        -> JSONWriteRead class perform the work with the files (Database directory). I choosed to
-           store all the questions in a file, the same for the quizzes and the users in individual files.
+- **Delete Quiz:** Users can remove their own quizzes from the system.
 
-        -> The process of completing a quiz is done by checking every answer from every question,
-           based on the questions's type. After checking a question, subtracting the number of answers
-           the question had from the rest of answerIds (offset).
+- **Submit Quiz:** Users can answer quizzes from the system, regardless of who created them.
 
-        -> More details about the implementation can be found in javadoc and comments inside methods.
+- **Return My Answers:** Users can access detailed statistics containing the results of completed quizzes.
+
+## Implementation
+
+The Survey Generator is implemented using the following components:
+
+- **Parser Class:** This class contains methods that perform parsing for various types of requests. It checks for invalid input and generates confirmation messages using an instance of the `JSONObject` class.
+
+- **JSONWriteRead Class:** This class handles file operations, specifically with the database directory. Questions, quizzes, and user data are stored in individual files.
+
+- **Quiz Completion:** The process of completing a quiz involves checking every answer for each question, based on the question's type. After checking a question, the number of answers the question had is subtracted from the remaining answer IDs (offset).
+
+For more details about the implementation, please refer to the provided JavaDoc documentation and comments inside the methods.
+
+This application is a powerful tool for creating and managing surveys and quizzes. It provides flexibility in question types and user interactions, making it a versatile solution for various use cases.
+
+Feel free to explore the code and documentation for a deeper understanding of how the Survey Generator works and how to use it effectively.
